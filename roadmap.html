@@ -1,0 +1,1640 @@
+<title>Citara Build Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root {
+  --ground: #f1f4f1;
+  --panel: #ffffff;
+  --panel-2: #f7f9f7;
+  --ink: #12171a;
+  --ink-soft: #5c666b;
+  --ink-faint: #8b959a;
+  --rule: #dbe2dd;
+  --rule-strong: #c2ccc5;
+
+  /* The two products stay visually separate, exactly as the scores do. */
+  --geo: #1f6f5c;
+  --geo-soft: #dcece7;
+  --readiness: #a2571f;
+  --readiness-soft: #f3e4d7;
+  --support: #4e5a64;
+  --support-soft: #e3e8ea;
+
+  --done: #1f6f5c;
+  --partial: #a2571f;
+  --idle: #aab4b0;
+
+  --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+
+  --shadow: 0 1px 2px rgba(18, 23, 26, 0.05);
+  --shadow-lift: 0 10px 30px -18px rgba(18, 23, 26, 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --ground: #10151a;
+    --panel: #171d22;
+    --panel-2: #1c2329;
+    --ink: #e7ede9;
+    --ink-soft: #97a29c;
+    --ink-faint: #6d7a75;
+    --rule: #29323a;
+    --rule-strong: #3a464e;
+
+    --geo: #5cbba1;
+    --geo-soft: #1b3730;
+    --readiness: #dd9455;
+    --readiness-soft: #3a2a1a;
+    --support: #92a2ad;
+    --support-soft: #262f36;
+
+    --done: #5cbba1;
+    --partial: #dd9455;
+    --idle: #4d585f;
+
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-lift: 0 12px 34px -20px rgba(0, 0, 0, 0.9);
+  }
+}
+
+:root[data-theme='dark'] {
+  --ground: #10151a;
+  --panel: #171d22;
+  --panel-2: #1c2329;
+  --ink: #e7ede9;
+  --ink-soft: #97a29c;
+  --ink-faint: #6d7a75;
+  --rule: #29323a;
+  --rule-strong: #3a464e;
+  --geo: #5cbba1;
+  --geo-soft: #1b3730;
+  --readiness: #dd9455;
+  --readiness-soft: #3a2a1a;
+  --support: #92a2ad;
+  --support-soft: #262f36;
+  --done: #5cbba1;
+  --partial: #dd9455;
+  --idle: #4d585f;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-lift: 0 12px 34px -20px rgba(0, 0, 0, 0.9);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+
+/* ---------- masthead ---------- */
+.masthead { padding: 4.5rem 0 2.5rem; border-bottom: 1px solid var(--rule); }
+.masthead__kicker {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.masthead__title {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 1.2rem + 3.6vw, 3.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.masthead__lede { margin: 0; max-width: 62ch; font-size: 1.0625rem; color: var(--ink-soft); }
+
+.summary { display: grid; gap: 1px; margin-top: 2.5rem; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 720px) { .summary { grid-template-columns: repeat(4, 1fr); } }
+.summary__cell { padding: 1.15rem 1.25rem; background: var(--panel); }
+.summary__value { display: block; font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.summary__label { display: block; margin-top: 0.15rem; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+
+/* ---------- gates ---------- */
+.section { padding: 3.25rem 0; border-bottom: 1px solid var(--rule); }
+.section__head { margin-bottom: 1.75rem; }
+.section__title { margin: 0 0 0.4rem; font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; letter-spacing: -0.02em; }
+.section__note { margin: 0; max-width: 68ch; color: var(--ink-soft); font-size: 0.9375rem; }
+
+.gates { display: grid; gap: 1.25rem; }
+@media (min-width: 860px) { .gates { grid-template-columns: 1fr 1fr; } }
+.gate { padding: 1.5rem; border: 1px solid var(--rule); border-radius: 10px; background: var(--panel); box-shadow: var(--shadow); border-top: 3px solid var(--support); }
+.gate--geo { border-top-color: var(--geo); }
+.gate--readiness { border-top-color: var(--readiness); }
+.gate__label { margin: 0 0 0.35rem; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
+.gate__title { margin: 0 0 0.9rem; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; letter-spacing: -0.015em; }
+.gate__chain { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0; padding: 0; list-style: none; }
+.gate__chain li { font-family: var(--font-mono); font-size: 11.5px; padding: 0.2rem 0.5rem; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--rule); color: var(--ink-soft); }
+.gate--geo .gate__chain li { background: var(--geo-soft); border-color: transparent; color: var(--ink); }
+.gate--readiness .gate__chain li { background: var(--readiness-soft); border-color: transparent; color: var(--ink); }
+
+/* ---------- controls ---------- */
+.controls { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin-bottom: 1.5rem; position: sticky; top: 0; z-index: 5; padding: 0.85rem 0; background: linear-gradient(var(--ground) 78%, transparent); }
+.search { flex: 1 1 15rem; padding: 0.55rem 0.75rem; border: 1px solid var(--rule-strong); border-radius: 7px; background: var(--panel); color: var(--ink); font: inherit; font-size: 0.875rem; }
+.search:focus { outline: 2px solid var(--geo); outline-offset: 1px; }
+.chip { padding: 0.4rem 0.7rem; border: 1px solid var(--rule-strong); border-radius: 999px; background: var(--panel); color: var(--ink-soft); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; cursor: pointer; transition: border-color 140ms ease, color 140ms ease; }
+.chip:hover { border-color: var(--ink-faint); color: var(--ink); }
+.chip[aria-pressed='true'] { background: var(--ink); border-color: var(--ink); color: var(--ground); }
+.chip--geo[aria-pressed='true'] { background: var(--geo); border-color: var(--geo); color: #fff; }
+.chip--readiness[aria-pressed='true'] { background: var(--readiness); border-color: var(--readiness); color: #fff; }
+
+/* ---------- phases ---------- */
+.phases { display: grid; gap: 0.6rem; }
+.phase { scroll-margin-top: 5.5rem; border: 1px solid var(--rule); border-left: 3px solid var(--support); border-radius: 9px; background: var(--panel); box-shadow: var(--shadow); overflow: hidden; }
+.phase[data-track='geo'] { border-left-color: var(--geo); }
+.phase[data-track='readiness'] { border-left-color: var(--readiness); }
+.phase[hidden] { display: none; }
+
+.phase__summary { display: grid; grid-template-columns: 3rem 1fr auto; gap: 0.9rem; align-items: center; padding: 1rem 1.15rem; cursor: pointer; list-style: none; }
+.phase__summary::-webkit-details-marker { display: none; }
+.phase__summary:hover { background: var(--panel-2); }
+.phase__num { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--ink-faint); font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+.phase__main { min-width: 0; }
+.phase__title { margin: 0; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.015em; }
+.phase__meta { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; margin-top: 0.3rem; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); }
+.phase__track { color: var(--support); }
+.phase[data-track='geo'] .phase__track { color: var(--geo); }
+.phase[data-track='readiness'] .phase__track { color: var(--readiness); }
+.phase__aside { display: flex; align-items: center; gap: 0.75rem; }
+
+.pill { padding: 0.2rem 0.55rem; border-radius: 999px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--rule-strong); color: var(--ink-faint); white-space: nowrap; }
+.pill--done { border-color: transparent; background: var(--geo-soft); color: var(--done); }
+.pill--in-progress { border-color: transparent; background: var(--readiness-soft); color: var(--partial); }
+
+.bar { width: 5.5rem; height: 5px; border-radius: 999px; background: var(--rule); overflow: hidden; display: flex; }
+.bar__done { background: var(--done); }
+.bar__partial { background: var(--partial); }
+
+.phase__body { padding: 0 1.15rem 1.35rem 1.15rem; border-top: 1px solid var(--rule); }
+.phase__goal { margin: 1rem 0 1.1rem; max-width: 74ch; color: var(--ink-soft); font-size: 0.9375rem; }
+.deps { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.1rem; align-items: baseline; }
+.deps__label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+.deps a { font-family: var(--font-mono); font-size: 11px; padding: 0.15rem 0.45rem; border-radius: 4px; background: var(--support-soft); color: var(--ink); text-decoration: none; }
+.deps a:hover { text-decoration: underline; }
+
+.tasks { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 7px; overflow: hidden; }
+.task { display: grid; grid-template-columns: auto 1fr; gap: 0.65rem; padding: 0.5rem 0.75rem; background: var(--panel); align-items: baseline; font-size: 0.875rem; }
+.task[hidden] { display: none; }
+.task__marker { width: 9px; height: 9px; border-radius: 50%; background: var(--idle); flex-shrink: 0; align-self: center; }
+.task--done .task__marker { background: var(--done); }
+.task--partial .task__marker { background: linear-gradient(90deg, var(--partial) 50%, transparent 50%); box-shadow: inset 0 0 0 1px var(--partial); }
+.task--done .task__title { color: var(--ink-soft); }
+.task__note { display: block; margin-top: 0.15rem; font-size: 0.8125rem; color: var(--ink-faint); }
+mark { background: var(--readiness-soft); color: inherit; padding: 0 0.1em; border-radius: 2px; }
+
+.exit { margin-top: 1.1rem; padding: 0.9rem 1rem; border-radius: 7px; background: var(--panel-2); border: 1px solid var(--rule); }
+.exit__label { margin: 0 0 0.4rem; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+.exit ul { margin: 0; padding-left: 1.1rem; font-size: 0.875rem; color: var(--ink-soft); }
+.exit li + li { margin-top: 0.2rem; }
+
+/* ---------- releases ---------- */
+.releases { display: grid; gap: 0.6rem; counter-reset: release; }
+.release { display: grid; grid-template-columns: 2.25rem 1fr; gap: 1rem; padding: 1.1rem 1.25rem; border: 1px solid var(--rule); border-radius: 9px; background: var(--panel); box-shadow: var(--shadow); }
+.release__letter { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: var(--ink-faint); letter-spacing: -0.03em; }
+.release__name { margin: 0 0 0.25rem; font-family: var(--font-display); font-size: 1rem; font-weight: 600; }
+.release__summary { margin: 0 0 0.6rem; font-size: 0.875rem; color: var(--ink-soft); max-width: 74ch; }
+.release__phases { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.release__phases a { font-family: var(--font-mono); font-size: 10.5px; padding: 0.15rem 0.42rem; border-radius: 4px; background: var(--support-soft); color: var(--ink); text-decoration: none; }
+
+/* ---------- acceptance ---------- */
+.accept { display: grid; gap: 1rem; }
+@media (min-width: 760px) { .accept { grid-template-columns: 1fr 1fr; } }
+.accept__card { padding: 1.15rem 1.3rem; border: 1px solid var(--rule); border-radius: 9px; background: var(--panel); }
+.accept__id { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; color: var(--ink-faint); }
+.accept__title { margin: 0.2rem 0 0.7rem; font-family: var(--font-display); font-size: 1rem; font-weight: 600; }
+.accept__card ol { margin: 0; padding-left: 1.15rem; font-size: 0.8438rem; color: var(--ink-soft); }
+.accept__card li + li { margin-top: 0.15rem; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.25rem; font-size: 0.8125rem; color: var(--ink-soft); }
+.legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.legend i { width: 9px; height: 9px; border-radius: 50%; background: var(--idle); }
+
+footer { padding: 2.5rem 0 4rem; color: var(--ink-faint); font-size: 0.8125rem; }
+footer code { font-family: var(--font-mono); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="masthead__kicker">Citara · implementation plan</p>
+    <h1 class="masthead__title">Two measurements,<br>twenty-three phases.</h1>
+    <p class="masthead__lede">
+      AI Visibility and Agent Readiness are built on one evidence platform but never merged into one
+      number. This is the phase-by-phase plan derived from the product blueprint, with the status of
+      every task as it actually stands in the repository.
+    </p>
+
+    <div class="summary">
+      <div class="summary__cell"><span class="summary__value">23</span><span class="summary__label">Phases</span></div>
+      <div class="summary__cell"><span class="summary__value">459</span><span class="summary__label">Tasks</span></div>
+      <div class="summary__cell"><span class="summary__value">199</span><span class="summary__label">Done</span></div>
+      <div class="summary__cell"><span class="summary__value">23</span><span class="summary__label">In progress</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">The two MVP gates</h2>
+      <p class="section__note">
+        Neither product counts as delivered because pages render. Each is done only when its whole
+        chain works end to end on real persisted evidence.
+      </p>
+    </div>
+    <div class="gates">
+      <article class="gate gate--geo">
+        <p class="gate__label">Gate 1</p>
+        <h3 class="gate__title">Core GEO MVP</h3>
+        <ol class="gate__chain">
+          <li>signup</li>
+          <li>workspace</li>
+          <li>brand</li>
+          <li>prompt</li>
+          <li>provider run</li>
+          <li>persisted AI answer</li>
+          <li>mention analysis</li>
+          <li>competitor analysis</li>
+          <li>rank</li>
+          <li>sentiment</li>
+          <li>citations</li>
+          <li>aggregated visibility</li>
+          <li>Overview</li>
+          <li>Prompt Detail</li>
+          <li>Chat evidence</li>
+          <li>Sources</li>
+        </ol>
+      </article>
+      <article class="gate gate--readiness">
+        <p class="gate__label">Gate 2</p>
+        <h3 class="gate__title">Core Agent Readiness MVP</h3>
+        <ol class="gate__chain">
+          <li>domain</li>
+          <li>scan</li>
+          <li>target-kind detection</li>
+          <li>methodology version</li>
+          <li>applicable checks</li>
+          <li>evidence</li>
+          <li>layer scores</li>
+          <li>overall score</li>
+          <li>failed-check recommendations</li>
+          <li>history</li>
+          <li>targeted re-check</li>
+        </ol>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="phases">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Phases</h2>
+      <p class="section__note">
+        Ordered by the blueprint's sequencing rule: foundation, then real GEO evidence, then the
+        readiness scanner, then everything that depends on both. Network features come last by
+        design — a leaderboard built on measurements nobody trusts is worth nothing.
+      </p>
+    </div>
+
+    <div class="controls">
+      <input class="search" id="search" type="search" placeholder="Search phases and tasks…" aria-label="Search phases and tasks">
+      <button class="chip" data-filter-track="all" aria-pressed="true">All tracks</button>
+      <button class="chip chip--geo" data-filter-track="geo" aria-pressed="false">AI Visibility</button>
+      <button class="chip chip--readiness" data-filter-track="readiness" aria-pressed="false">Agent Readiness</button>
+      <button class="chip" data-filter-track="foundation" aria-pressed="false">Foundation</button>
+      <button class="chip" data-filter-track="platform" aria-pressed="false">Platform</button>
+      <button class="chip" data-filter-track="execution" aria-pressed="false">Execution</button>
+      <button class="chip" data-filter-track="devex" aria-pressed="false">DevEx</button>
+      <button class="chip" data-filter-track="network" aria-pressed="false">Network</button>
+      <button class="chip" id="toggle-all" aria-pressed="false">Expand all</button>
+    </div>
+
+    <div class="phases">
+      <details class="phase" id="phase-0" data-track="foundation" data-status="in-progress" open>
+        <summary class="phase__summary">
+          <span class="phase__num">00</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Product Contracts, Research Baseline and Repository Skeleton</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Foundation</span>
+              <span>·</span>
+              <span>19/22 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            <span class="pill pill--in-progress">In progress</span>
+            <span class="bar" role="img" aria-label="19 of 22 tasks done">
+              <span class="bar__done" style="width:86.36%"></span>
+              <span class="bar__partial" style="width:13.64%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Freeze product concepts, terminology, and architecture decisions before any implementation begins, and stand up a working repository skeleton.</p>
+          <p class="deps"><span class="deps__label">No dependencies — this is the starting point</span></p>
+          <ul class="tasks">
+            <li class="task task--done" data-text="create /docs/product/product_blueprint.md from this document"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Create /docs/product/PRODUCT_BLUEPRINT.md from this document</span></li>
+            <li class="task task--done" data-text="create /docs/product/observed_vs_inferred.md"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Create /docs/product/OBSERVED_VS_INFERRED.md</span></li>
+            <li class="task task--done" data-text="create /docs/architecture/adr-0001-modular-monolith.md"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Create /docs/architecture/ADR-0001-modular-monolith.md</span></li>
+            <li class="task task--done" data-text="create /docs/architecture/adr-0002-evidence-first.md"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Create /docs/architecture/ADR-0002-evidence-first.md</span></li>
+            <li class="task task--done" data-text="create /docs/architecture/adr-0003-background-jobs.md"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Create /docs/architecture/ADR-0003-background-jobs.md</span></li>
+            <li class="task task--done" data-text="create /docs/architecture/adr-0004-provider-adapters.md"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Create /docs/architecture/ADR-0004-provider-adapters.md</span></li>
+            <li class="task task--done" data-text="create /docs/architecture/adr-0005-readiness-methodology-versioning.md"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Create /docs/architecture/ADR-0005-readiness-methodology-versioning.md</span></li>
+            <li class="task task--done" data-text="define core terminology (workspace, brand, prompt, prompt run, answer, source, scan, check, journey, recommendation)"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define core terminology (workspace, brand, prompt, prompt run, answer, source, scan, check, journey, recommendation)</span></li>
+            <li class="task task--partial" data-text="define supported mvp ai platform"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define supported MVP AI platform<span class="task__note">Adapter contract + fixture provider decided (ADR-0005); the launch platform and its commercial agreement are still open.</span></span></li>
+            <li class="task task--partial" data-text="define legal/compliance collection method for that platform"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define legal/compliance collection method for that platform<span class="task__note">Policy fixed: official paid APIs only, no scraping or auth bypass. Specific provider terms pending platform choice.</span></span></li>
+            <li class="task task--done" data-text="define initial plan model without implementing billing"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define initial plan model without implementing billing</span></li>
+            <li class="task task--done" data-text="define data-retention policy"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define data-retention policy</span></li>
+            <li class="task task--done" data-text="define raw-evidence storage policy"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define raw-evidence storage policy</span></li>
+            <li class="task task--done" data-text="define initial error taxonomy"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define initial error taxonomy</span></li>
+            <li class="task task--done" data-text="define event naming conventions"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define event naming conventions</span></li>
+            <li class="task task--done" data-text="define job idempotency convention"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define job idempotency convention</span></li>
+            <li class="task task--done" data-text="define correlation ids across api/job/evidence records"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define correlation IDs across API/job/evidence records</span></li>
+            <li class="task task--done" data-text="build a repository-level architecture map"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Build a repository-level architecture map</span></li>
+            <li class="task task--done" data-text="establish unit/integration/e2e test conventions"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Establish unit/integration/e2e test conventions</span></li>
+            <li class="task task--partial" data-text="establish lint/type/format hooks"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Establish lint/type/format hooks<span class="task__note">npm scripts and CI enforce format/type/lint/test. Git pre-commit hooks not installed.</span></span></li>
+            <li class="task task--done" data-text="establish secret management policy"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Establish secret management policy</span></li>
+            <li class="task task--done" data-text="establish local dev environment"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Establish local dev environment</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>Architecture decisions documented</li><li>No unresolved core entity naming</li><li>Test harness boots</li><li>Application runs locally</li><li>Database migrations work</li><li>Queue can execute a sample job</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-1" data-track="platform" data-status="in-progress" open>
+        <summary class="phase__summary">
+          <span class="phase__num">01</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Identity, Workspace and Tenant Security</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Platform</span>
+              <span>·</span>
+              <span>23/24 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            <span class="pill pill--in-progress">In progress</span>
+            <span class="bar" role="img" aria-label="23 of 24 tasks done">
+              <span class="bar__done" style="width:95.83%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Create the secure multi-tenant foundation covering authentication, workspaces, roles, and cross-tenant isolation.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-0">Phase 0</a></p>
+          <ul class="tasks">
+            <li class="task task--done" data-text="user table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">User table</span></li>
+            <li class="task task--done" data-text="workspace table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Workspace table</span></li>
+            <li class="task task--done" data-text="workspacemembership table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">WorkspaceMembership table</span></li>
+            <li class="task task--done" data-text="brand table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Brand table</span></li>
+            <li class="task task--done" data-text="brandalias table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">BrandAlias table</span></li>
+            <li class="task task--not-started" data-text="google oauth"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Google OAuth<span class="task__note">oauth_states table exists; no OAuth flow yet.</span></span></li>
+            <li class="task task--done" data-text="email magic link"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Email magic link</span></li>
+            <li class="task task--done" data-text="session creation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Session creation</span></li>
+            <li class="task task--done" data-text="session revocation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Session revocation</span></li>
+            <li class="task task--done" data-text="logout"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Logout</span></li>
+            <li class="task task--done" data-text="workspace switch"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Workspace switch<span class="task__note">Workspace switcher in the shell nav.</span></span></li>
+            <li class="task task--done" data-text="owner role"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Owner role</span></li>
+            <li class="task task--done" data-text="admin role"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Admin role</span></li>
+            <li class="task task--done" data-text="member role"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Member role</span></li>
+            <li class="task task--done" data-text="viewer role"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Viewer role</span></li>
+            <li class="task task--done" data-text="authorization middleware"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Authorization middleware</span></li>
+            <li class="task task--done" data-text="workspace-scoped repository/query helpers"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Workspace-scoped repository/query helpers<span class="task__note">requireWorkspaceAccess resolved in the workspace layout, so nested pages inherit the guard.</span></span></li>
+            <li class="task task--done" data-text="audit log foundation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Audit log foundation</span></li>
+            <li class="task task--done" data-text="rate limit magic-link endpoints"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Rate limit magic-link endpoints</span></li>
+            <li class="task task--done" data-text="csrf protections where applicable"><span class="task__marker" aria-hidden="true"></span><span class="task__title">CSRF protections where applicable</span></li>
+            <li class="task task--done" data-text="auth error screens"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Auth error screens<span class="task__note">Sign-in renders the error reason returned by the verify redirect.</span></span></li>
+            <li class="task task--done" data-text="account menu"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Account menu<span class="task__note">Account menu in the shell nav, with sign-out that clears the RSC cache.</span></span></li>
+            <li class="task task--done" data-text="basic app shell"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Basic app shell</span></li>
+            <li class="task task--done" data-text="mobile navigation shell"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Mobile navigation shell</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A user can authenticate, create a workspace, create a brand and cannot access another tenant's data</li><li>Cross-workspace access is attempted and rejected for every read/write API (security test)</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-2" data-track="foundation" data-status="in-progress" open>
+        <summary class="phase__summary">
+          <span class="phase__num">02</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Brand, Domain, Market and Platform Configuration</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Foundation</span>
+              <span>·</span>
+              <span>14/17 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            <span class="pill pill--in-progress">In progress</span>
+            <span class="bar" role="img" aria-label="14 of 17 tasks done">
+              <span class="bar__done" style="width:82.35%"></span>
+              <span class="bar__partial" style="width:11.76%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Create all the shared context required by both GEO tracking and readiness scans, so parallel workstreams can begin once this phase is stable.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-1">Phase 1</a></p>
+          <ul class="tasks">
+            <li class="task task--done" data-text="domaintarget table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">DomainTarget table<span class="task__note">DomainTarget table plus canonical normalization and SSRF-safe creation.</span></span></li>
+            <li class="task task--done" data-text="canonical domain normalization"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Canonical domain normalization</span></li>
+            <li class="task task--done" data-text="brand alias management"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Brand alias management</span></li>
+            <li class="task task--done" data-text="competitor placeholders"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Competitor placeholders</span></li>
+            <li class="task task--done" data-text="country/market model"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Country/market model</span></li>
+            <li class="task task--done" data-text="language model"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Language model</span></li>
+            <li class="task task--done" data-text="ai platform registry"><span class="task__marker" aria-hidden="true"></span><span class="task__title">AI Platform registry</span></li>
+            <li class="task task--done" data-text="workspaceplatform enablement"><span class="task__marker" aria-hidden="true"></span><span class="task__title">WorkspacePlatform enablement</span></li>
+            <li class="task task--done" data-text="platform capability metadata"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Platform capability metadata</span></li>
+            <li class="task task--partial" data-text="global date/model/location filter state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Global date/model/location filter state<span class="task__note">Date range defaults to 30 days server-side; no shared filter UI yet.</span></span></li>
+            <li class="task task--done" data-text="workspace settings page"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Workspace settings page<span class="task__note">Platforms page with capability flags and per-platform enablement.</span></span></li>
+            <li class="task task--done" data-text="brands page"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Brands page</span></li>
+            <li class="task task--done" data-text="competitors page skeleton"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Competitors page skeleton</span></li>
+            <li class="task task--not-started" data-text="onboarding flow"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Onboarding flow</span></li>
+            <li class="task task--done" data-text="url validation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">URL validation</span></li>
+            <li class="task task--done" data-text="ssrf-safe domain validation architecture"><span class="task__marker" aria-hidden="true"></span><span class="task__title">SSRF-safe domain validation architecture</span></li>
+            <li class="task task--partial" data-text="first-run state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">First-run state<span class="task__note">Overview renders a first-run empty state; there is no guided onboarding.</span></span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A workspace can define brand + domain + aliases + market + language + platform and all are available through APIs</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-3" data-track="geo" data-status="in-progress" open>
+        <summary class="phase__summary">
+          <span class="phase__num">03</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Prompt Library and Demand Model</h3>
+            <span class="phase__meta">
+              <span class="phase__track">AI Visibility</span>
+              <span>·</span>
+              <span>17/23 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            <span class="pill pill--in-progress">In progress</span>
+            <span class="bar" role="img" aria-label="17 of 23 tasks done">
+              <span class="bar__done" style="width:73.91%"></span>
+              <span class="bar__partial" style="width:8.70%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Create the ZeroRank-style prompt tracking substrate that organizes and activates prompts users will run against AI platforms.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-2">Phase 2</a></p>
+          <ul class="tasks">
+            <li class="task task--done" data-text="topic table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Topic table</span></li>
+            <li class="task task--done" data-text="tag table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Tag table</span></li>
+            <li class="task task--done" data-text="prompt table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt table</span></li>
+            <li class="task task--done" data-text="prompttag table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">PromptTag table</span></li>
+            <li class="task task--done" data-text="active state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Active state</span></li>
+            <li class="task task--done" data-text="inactive state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Inactive state</span></li>
+            <li class="task task--partial" data-text="suggested state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Suggested state<span class="task__note">suggested_prompts table exists; no generation or acceptance flow (Phase 8).</span></span></li>
+            <li class="task task--not-started" data-text="rejected state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Rejected state</span></li>
+            <li class="task task--done" data-text="prompt crud"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt CRUD</span></li>
+            <li class="task task--done" data-text="topic crud"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Topic CRUD</span></li>
+            <li class="task task--done" data-text="tag crud"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Tag CRUD</span></li>
+            <li class="task task--done" data-text="prompt search"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt search</span></li>
+            <li class="task task--done" data-text="prompt filters"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt filters</span></li>
+            <li class="task task--partial" data-text="prompt quota service interface"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt quota service interface<span class="task__note">Rate limits enforce a ceiling; plan-based quotas arrive with billing (Phase 17).</span></span></li>
+            <li class="task task--done" data-text="active/suggested/inactive ui"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Active/Suggested/Inactive UI<span class="task__note">Active prompts list with status; Suggested/Inactive tabs are Phase 8.</span></span></li>
+            <li class="task task--not-started" data-text="expandable topic groups"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Expandable topic groups</span></li>
+            <li class="task task--done" data-text="prompt detail route"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt detail route</span></li>
+            <li class="task task--done" data-text="duplicate exact detection"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Duplicate exact detection</span></li>
+            <li class="task task--not-started" data-text="semantic duplicate hook placeholder"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Semantic duplicate hook placeholder</span></li>
+            <li class="task task--done" data-text="location assignment"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Location assignment</span></li>
+            <li class="task task--done" data-text="platform assignment policy"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Platform assignment policy</span></li>
+            <li class="task task--not-started" data-text="prompt-value metadata placeholder"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt-value metadata placeholder</span></li>
+            <li class="task task--done" data-text="empty/loading/error states"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Empty/loading/error states</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>Users can organize and activate prompts without any fake analytics</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-4" data-track="geo" data-status="in-progress" open>
+        <summary class="phase__summary">
+          <span class="phase__num">04</span>
+          <span class="phase__main">
+            <h3 class="phase__title">AI Provider Runner and Evidence Ingestion</h3>
+            <span class="phase__meta">
+              <span class="phase__track">AI Visibility</span>
+              <span>·</span>
+              <span>15/20 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            <span class="pill pill--in-progress">In progress</span>
+            <span class="bar" role="img" aria-label="15 of 20 tasks done">
+              <span class="bar__done" style="width:75.00%"></span>
+              <span class="bar__partial" style="width:20.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Generate the first real AI visibility dataset by executing prompts against a compliant provider and persisting raw evidence.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-3">Phase 3</a></p>
+          <ul class="tasks">
+            <li class="task task--done" data-text="define aiplatformadapter"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define AIPlatformAdapter</span></li>
+            <li class="task task--partial" data-text="implement adapter contract tests"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Implement adapter contract tests<span class="task__note">Fixture adapter is exercised through the pipeline test; no shared contract suite run against every adapter yet.</span></span></li>
+            <li class="task task--done" data-text="implement one compliant provider"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Implement one compliant provider</span></li>
+            <li class="task task--done" data-text="promptrun table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">PromptRun table</span></li>
+            <li class="task task--done" data-text="aianswer table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">AIAnswer table</span></li>
+            <li class="task task--done" data-text="scheduler"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Scheduler</span></li>
+            <li class="task task--done" data-text="prompt execution queue"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt execution queue</span></li>
+            <li class="task task--done" data-text="retry strategy"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Retry strategy</span></li>
+            <li class="task task--done" data-text="timeout handling"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Timeout handling</span></li>
+            <li class="task task--done" data-text="partial failure handling"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Partial failure handling</span></li>
+            <li class="task task--partial" data-text="per-provider throttling"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Per-provider throttling<span class="task__note">Worker concurrency bounds provider calls; no per-provider token bucket.</span></span></li>
+            <li class="task task--done" data-text="usage event generation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Usage event generation</span></li>
+            <li class="task task--partial" data-text="raw response storage"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Raw response storage<span class="task__note">Answer text is persisted verbatim; the object-store path for large payloads is not wired.</span></span></li>
+            <li class="task task--done" data-text="citation-native payload preservation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Citation-native payload preservation</span></li>
+            <li class="task task--done" data-text="provider metadata storage"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Provider metadata storage</span></li>
+            <li class="task task--done" data-text="collector version"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Collector version</span></li>
+            <li class="task task--done" data-text="run status ui"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Run status UI<span class="task__note">Run status and error code shown on Prompt Detail.</span></span></li>
+            <li class="task task--done" data-text="manual internal test-run command"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Manual internal test-run command</span></li>
+            <li class="task task--partial" data-text="operational metrics"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Operational metrics<span class="task__note">Structured job logs carry duration and correlation id; no metrics exporter.</span></span></li>
+            <li class="task task--not-started" data-text="dead-letter handling"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Dead-letter handling</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A real active prompt produces a persisted AI answer through the background worker pipeline</li><li>One provider error never invalidates the entire prompt batch (critical rule)</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-5" data-track="geo" data-status="in-progress" open>
+        <summary class="phase__summary">
+          <span class="phase__num">05</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Answer Analysis</h3>
+            <span class="phase__meta">
+              <span class="phase__track">AI Visibility</span>
+              <span>·</span>
+              <span>17/20 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            <span class="pill pill--in-progress">In progress</span>
+            <span class="bar" role="img" aria-label="17 of 20 tasks done">
+              <span class="bar__done" style="width:85.00%"></span>
+              <span class="bar__partial" style="width:10.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Turn raw AI answers into structured, evidence-backed data: mentions, competitors, rank, sentiment, and citations.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-4">Phase 4</a></p>
+          <ul class="tasks">
+            <li class="task task--done" data-text="brand mention extraction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Brand mention extraction</span></li>
+            <li class="task task--done" data-text="alias matching"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Alias matching</span></li>
+            <li class="task task--done" data-text="mention evidence spans"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Mention evidence spans</span></li>
+            <li class="task task--partial" data-text="competitor extraction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Competitor extraction<span class="task__note">Known competitors are matched by alias; discovery of unknown competitors is Phase 7.</span></span></li>
+            <li class="task task--done" data-text="competitor normalization"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Competitor normalization</span></li>
+            <li class="task task--done" data-text="position/rank extraction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Position/rank extraction</span></li>
+            <li class="task task--done" data-text="sentiment classifier"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Sentiment classifier</span></li>
+            <li class="task task--done" data-text="sentiment evidence"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Sentiment evidence</span></li>
+            <li class="task task--done" data-text="citation extraction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Citation extraction</span></li>
+            <li class="task task--done" data-text="url normalization"><span class="task__marker" aria-hidden="true"></span><span class="task__title">URL normalization</span></li>
+            <li class="task task--done" data-text="sourcedomain entity"><span class="task__marker" aria-hidden="true"></span><span class="task__title">SourceDomain entity</span></li>
+            <li class="task task--done" data-text="domain classification"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Domain classification</span></li>
+            <li class="task task--done" data-text="answer analysis versioning"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Answer analysis versioning</span></li>
+            <li class="task task--partial" data-text="re-analysis command"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Re-analysis command<span class="task__note">analyzeAnswer is idempotent and safe to re-run; no operator-facing re-analysis command.</span></span></li>
+            <li class="task task--done" data-text="confidence fields"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Confidence fields</span></li>
+            <li class="task task--done" data-text="unknown/uncertain states"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Unknown/uncertain states</span></li>
+            <li class="task task--done" data-text="false-positive test corpus"><span class="task__marker" aria-hidden="true"></span><span class="task__title">False-positive test corpus</span></li>
+            <li class="task task--done" data-text="brand collision tests"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Brand collision tests</span></li>
+            <li class="task task--done" data-text="citation parsing test corpus"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Citation parsing test corpus</span></li>
+            <li class="task task--not-started" data-text="provider-specific normalization tests"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Provider-specific normalization tests</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>Every successful answer can expose brands, positions, sentiment, citations, and source domains with evidence</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-6" data-track="geo" data-status="in-progress" open>
+        <summary class="phase__summary">
+          <span class="phase__num">06</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Core GEO Analytics MVP</h3>
+            <span class="phase__meta">
+              <span class="phase__track">AI Visibility</span>
+              <span>·</span>
+              <span>20/24 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            <span class="pill pill--in-progress">In progress</span>
+            <span class="bar" role="img" aria-label="20 of 24 tasks done">
+              <span class="bar__done" style="width:83.33%"></span>
+              <span class="bar__partial" style="width:12.50%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Ship the first commercially useful product surface: visibility metrics, dashboards, and evidence drill-down.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-5">Phase 5</a></p>
+          <ul class="tasks">
+            <li class="task task--done" data-text="metricsnapshot"><span class="task__marker" aria-hidden="true"></span><span class="task__title">MetricSnapshot</span></li>
+            <li class="task task--done" data-text="visibility calculation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Visibility calculation</span></li>
+            <li class="task task--done" data-text="average rank"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Average rank</span></li>
+            <li class="task task--done" data-text="sentiment aggregation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Sentiment aggregation</span></li>
+            <li class="task task--done" data-text="mention counts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Mention counts</span></li>
+            <li class="task task--done" data-text="citation counts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Citation counts</span></li>
+            <li class="task task--done" data-text="overview api"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Overview API</span></li>
+            <li class="task task--done" data-text="overview ui"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Overview UI</span></li>
+            <li class="task task--done" data-text="visibility trend"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Visibility trend</span></li>
+            <li class="task task--partial" data-text="brand ranking"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Brand ranking<span class="task__note">Per-brand snapshots exist; the comparative ranking view is not built.</span></span></li>
+            <li class="task task--done" data-text="top sources"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Top sources</span></li>
+            <li class="task task--done" data-text="domain types"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Domain types</span></li>
+            <li class="task task--partial" data-text="prompt metrics table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt metrics table<span class="task__note">Prompt-level visibility computed on Prompt Detail; no cross-prompt metrics table.</span></span></li>
+            <li class="task task--done" data-text="prompt detail"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt Detail</span></li>
+            <li class="task task--done" data-text="chat list"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Chat list</span></li>
+            <li class="task task--done" data-text="chat preview"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Chat Preview</span></li>
+            <li class="task task--done" data-text="sources page"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Sources page</span></li>
+            <li class="task task--partial" data-text="shared filters"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Shared filters<span class="task__note">Server-side range defaults exist; no shared filter bar.</span></span></li>
+            <li class="task task--done" data-text="no-data vs zero-state distinction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">No-data vs zero-state distinction</span></li>
+            <li class="task task--done" data-text="partial-provider indicators"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Partial-provider indicators</span></li>
+            <li class="task task--done" data-text="historical range handling"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Historical range handling</span></li>
+            <li class="task task--done" data-text="analytics query indexes"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Analytics query indexes</span></li>
+            <li class="task task--not-started" data-text="cache strategy"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Cache strategy</span></li>
+            <li class="task task--done" data-text="end-to-end evidence links"><span class="task__marker" aria-hidden="true"></span><span class="task__title">End-to-end evidence links<span class="task__note">Mention offsets slice back to the stored answer and are highlighted in the UI.</span></span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>The full MVP flow works with real persisted data: signup -&gt; workspace -&gt; brand -&gt; prompt -&gt; provider run -&gt; answer -&gt; analysis -&gt; metrics -&gt; dashboard -&gt; prompt detail -&gt; chat evidence -&gt; source evidence</li><li>A limited private beta can begin here (commercial milestone)</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-7" data-track="geo" data-status="in-progress" open>
+        <summary class="phase__summary">
+          <span class="phase__num">07</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Competitor and Source Intelligence</h3>
+            <span class="phase__meta">
+              <span class="phase__track">AI Visibility</span>
+              <span>·</span>
+              <span>12/15 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            <span class="pill pill--in-progress">In progress</span>
+            <span class="bar" role="img" aria-label="12 of 15 tasks done">
+              <span class="bar__done" style="width:80.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Explain why the brand wins or loses by surfacing competitor visibility and the sources that support AI answers.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-6">Phase 6</a></p>
+          <ul class="tasks">
+            <li class="task task--done" data-text="automatic competitor discovery"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Automatic competitor discovery</span></li>
+            <li class="task task--done" data-text="competitor accept/ignore"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Competitor accept/ignore</span></li>
+            <li class="task task--done" data-text="competitor alias management"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Competitor alias management</span></li>
+            <li class="task task--not-started" data-text="competitor visibility time series"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Competitor visibility time series<span class="task__note">Snapshots exist per brand; the competitor time-series view is not built.</span></span></li>
+            <li class="task task--not-started" data-text="prompt-level competitor comparison"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt-level competitor comparison<span class="task__note">Gap detection is per answer; a prompt-level comparison table is not built.</span></span></li>
+            <li class="task task--done" data-text="source share"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Source share</span></li>
+            <li class="task task--done" data-text="source recurrence"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Source recurrence</span></li>
+            <li class="task task--done" data-text="citation gap"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Citation gap</span></li>
+            <li class="task task--done" data-text="source detail"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Source detail</span></li>
+            <li class="task task--done" data-text="exact cited url list"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Exact cited URL list</span></li>
+            <li class="task task--done" data-text="source domain category"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Source domain category</span></li>
+            <li class="task task--done" data-text="competitor cited-source overlap"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Competitor cited-source overlap</span></li>
+            <li class="task task--done" data-text="&quot;competitor appears, brand absent&quot; detector"><span class="task__marker" aria-hidden="true"></span><span class="task__title">&quot;Competitor appears, brand absent&quot; detector</span></li>
+            <li class="task task--done" data-text="high-value source detector"><span class="task__marker" aria-hidden="true"></span><span class="task__title">High-value source detector</span></li>
+            <li class="task task--not-started" data-text="gap evidence ui"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Gap evidence UI<span class="task__note">Gaps are exposed through the API; no UI yet.</span></span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A user can answer: for this prompt, who beats me and which sources appear to support that result?</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-8" data-track="geo" data-status="not-started">
+        <summary class="phase__summary">
+          <span class="phase__num">08</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Suggested Prompts and Fanout Research</h3>
+            <span class="phase__meta">
+              <span class="phase__track">AI Visibility</span>
+              <span>·</span>
+              <span>0/19 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            
+            <span class="bar" role="img" aria-label="0 of 19 tasks done">
+              <span class="bar__done" style="width:0.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Help users discover demand automatically instead of manually maintaining every prompt.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-7">Phase 7</a></p>
+          <ul class="tasks">
+            <li class="task task--not-started" data-text="website/category summarization"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Website/category summarization</span></li>
+            <li class="task task--not-started" data-text="seed prompt generation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Seed prompt generation</span></li>
+            <li class="task task--not-started" data-text="prompt topic generation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt topic generation</span></li>
+            <li class="task task--not-started" data-text="seo/customer-question input support"><span class="task__marker" aria-hidden="true"></span><span class="task__title">SEO/customer-question input support</span></li>
+            <li class="task task--not-started" data-text="comparison prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Comparison prompts</span></li>
+            <li class="task task--not-started" data-text="alternative prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Alternative prompts</span></li>
+            <li class="task task--not-started" data-text="use-case prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Use-case prompts</span></li>
+            <li class="task task--not-started" data-text="educational prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Educational prompts</span></li>
+            <li class="task task--not-started" data-text="branded prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Branded prompts</span></li>
+            <li class="task task--not-started" data-text="funnel-stage classification"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Funnel-stage classification</span></li>
+            <li class="task task--not-started" data-text="semantic dedupe"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Semantic dedupe</span></li>
+            <li class="task task--not-started" data-text="relevance score"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Relevance score</span></li>
+            <li class="task task--not-started" data-text="accept"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Accept</span></li>
+            <li class="task task--not-started" data-text="reject"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Reject</span></li>
+            <li class="task task--not-started" data-text="rejection memory"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Rejection memory</span></li>
+            <li class="task task--not-started" data-text="fanout variants"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Fanout variants</span></li>
+            <li class="task task--not-started" data-text="fanout clustering"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Fanout clustering</span></li>
+            <li class="task task--not-started" data-text="prompt-value scoring"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt-value scoring</span></li>
+            <li class="task task--not-started" data-text="suggested prompt quota forecast"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Suggested prompt quota forecast</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A new brand can receive a useful initial prompt library without manual research</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-9" data-track="readiness" data-status="in-progress" open>
+        <summary class="phase__summary">
+          <span class="phase__num">09</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Agent Readiness Scanner Foundation</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Agent Readiness</span>
+              <span>·</span>
+              <span>24/29 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            <span class="pill pill--in-progress">In progress</span>
+            <span class="bar" role="img" aria-label="24 of 29 tasks done">
+              <span class="bar__done" style="width:82.76%"></span>
+              <span class="bar__partial" style="width:6.90%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Add the first Ora-inspired product pillar (deterministic agent-readiness scanning) without delaying earlier GEO value.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-2">Phase 2</a></p>
+          <ul class="tasks">
+            <li class="task task--done" data-text="methodologyversion"><span class="task__marker" aria-hidden="true"></span><span class="task__title">MethodologyVersion</span></li>
+            <li class="task task--done" data-text="checkdefinition"><span class="task__marker" aria-hidden="true"></span><span class="task__title">CheckDefinition</span></li>
+            <li class="task task--done" data-text="readinessscan"><span class="task__marker" aria-hidden="true"></span><span class="task__title">ReadinessScan</span></li>
+            <li class="task task--done" data-text="readinesslayerresult"><span class="task__marker" aria-hidden="true"></span><span class="task__title">ReadinessLayerResult</span></li>
+            <li class="task task--done" data-text="checkresult"><span class="task__marker" aria-hidden="true"></span><span class="task__title">CheckResult</span></li>
+            <li class="task task--done" data-text="check catalog loader"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Check catalog loader</span></li>
+            <li class="task task--done" data-text="stable check ids"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Stable check IDs</span></li>
+            <li class="task task--done" data-text="check maturity/tier"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Check maturity/tier</span></li>
+            <li class="task task--done" data-text="applicability rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Applicability rules</span></li>
+            <li class="task task--partial" data-text="domain target-kind detection"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Domain target-kind detection<span class="task__note">targetKind is stored and drives applicability; automatic detection from probes is not implemented.</span></span></li>
+            <li class="task task--not-started" data-text="ephemeral target support"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Ephemeral target support</span></li>
+            <li class="task task--done" data-text="scan queue"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Scan queue</span></li>
+            <li class="task task--done" data-text="scan lifecycle"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Scan lifecycle</span></li>
+            <li class="task task--not-started" data-text="scan progress events"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Scan progress events</span></li>
+            <li class="task task--done" data-text="targeted re-check api"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Targeted re-check API<span class="task__note">Targeted re-check writes into the same scan under the same methodology version.</span></span></li>
+            <li class="task task--done" data-text="historical scans"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Historical scans</span></li>
+            <li class="task task--done" data-text="score calculation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Score calculation</span></li>
+            <li class="task task--done" data-text="grade calculation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Grade calculation</span></li>
+            <li class="task task--done" data-text="evidence storage"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Evidence storage</span></li>
+            <li class="task task--done" data-text="recommendation text"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Recommendation text</span></li>
+            <li class="task task--not-started" data-text="estimated gain"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Estimated gain</span></li>
+            <li class="task task--done" data-text="n/a behavior"><span class="task__marker" aria-hidden="true"></span><span class="task__title">N/A behavior</span></li>
+            <li class="task task--done" data-text="readiness score ui"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Readiness score UI</span></li>
+            <li class="task task--done" data-text="layer score ui"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Layer score UI</span></li>
+            <li class="task task--done" data-text="check-list ui"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Check-list UI</span></li>
+            <li class="task task--done" data-text="check detail"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Check detail</span></li>
+            <li class="task task--done" data-text="re-scan"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Re-scan<span class="task__note">Re-scan works through the same endpoint; scans are idempotent per hour bucket.</span></span></li>
+            <li class="task task--done" data-text="methodology version display"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Methodology version display<span class="task__note">Methodology version shown on every scan-history row.</span></span></li>
+            <li class="task task--partial" data-text="implement initial deterministic check families (https, robots.txt, sitemap.xml, llms.txt, server-rendered content, canonical metadata, json-ld, docs discovery, pricing discovery, openapi discovery, mcp discovery, oauth metadata discovery)"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Implement initial deterministic check families (HTTPS, robots.txt, sitemap.xml, llms.txt, server-rendered content, canonical metadata, JSON-LD, docs discovery, pricing discovery, OpenAPI discovery, MCP discovery, OAuth metadata discovery)<span class="task__note">13 of the listed families implemented: HTTPS, robots.txt, robots AI policy, sitemap, llms.txt, server-rendered content, soft-404, redirect chain, title/description, JSON-LD, landmarks, OpenAPI, MCP. Pricing/docs discovery and OAuth metadata are not.</span></span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A domain can receive a versioned readiness score with evidence and actionable checks</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-10" data-track="readiness" data-status="not-started">
+        <summary class="phase__summary">
+          <span class="phase__num">10</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Expanded Agent Readiness and Essentials</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Agent Readiness</span>
+              <span>·</span>
+              <span>0/25 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            
+            <span class="bar" role="img" aria-label="0 of 25 tasks done">
+              <span class="bar__done" style="width:0.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Make the scanner product-context aware so different product types are scored fairly.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-9">Phase 9</a></p>
+          <ul class="tasks">
+            <li class="task task--not-started" data-text="product-type classifier"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Product-type classifier</span></li>
+            <li class="task task--not-started" data-text="target capability detection"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Target capability detection</span></li>
+            <li class="task task--not-started" data-text="deterministic applicability rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Deterministic applicability rules</span></li>
+            <li class="task task--not-started" data-text="semantic relevance pass"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Semantic relevance pass</span></li>
+            <li class="task task--not-started" data-text="essentials scoring view"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Essentials scoring view</span></li>
+            <li class="task task--not-started" data-text="bonus checks"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Bonus checks</span></li>
+            <li class="task task--not-started" data-text="discovery check family expansion"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Discovery check family expansion</span></li>
+            <li class="task task--not-started" data-text="access check family expansion"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Access check family expansion</span></li>
+            <li class="task task--not-started" data-text="integration checks"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Integration checks</span></li>
+            <li class="task task--not-started" data-text="mcp handshake checks"><span class="task__marker" aria-hidden="true"></span><span class="task__title">MCP handshake checks</span></li>
+            <li class="task task--not-started" data-text="mcp tool-schema quality"><span class="task__marker" aria-hidden="true"></span><span class="task__title">MCP tool-schema quality</span></li>
+            <li class="task task--not-started" data-text="server-card detection"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Server-card detection</span></li>
+            <li class="task task--not-started" data-text="api operation quality"><span class="task__marker" aria-hidden="true"></span><span class="task__title">API operation quality</span></li>
+            <li class="task task--not-started" data-text="authentication checks"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Authentication checks</span></li>
+            <li class="task task--not-started" data-text="oauth metadata"><span class="task__marker" aria-hidden="true"></span><span class="task__title">OAuth metadata</span></li>
+            <li class="task task--not-started" data-text="pkce checks where observable/testable"><span class="task__marker" aria-hidden="true"></span><span class="task__title">PKCE checks where observable/testable</span></li>
+            <li class="task task--not-started" data-text="rate-limit docs"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Rate-limit docs</span></li>
+            <li class="task task--not-started" data-text="error-model checks"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Error-model checks</span></li>
+            <li class="task task--not-started" data-text="idempotency docs/checks"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Idempotency docs/checks</span></li>
+            <li class="task task--not-started" data-text="payment checks"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Payment checks</span></li>
+            <li class="task task--not-started" data-text="machine-readable pricing"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Machine-readable pricing</span></li>
+            <li class="task task--not-started" data-text="human-handoff checks"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Human-handoff checks</span></li>
+            <li class="task task--not-started" data-text="accessibility/agent ui checks"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Accessibility/agent UI checks</span></li>
+            <li class="task task--not-started" data-text="methodology migration tests"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Methodology migration tests</span></li>
+            <li class="task task--not-started" data-text="score-diff explanation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Score-diff explanation</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>Different product types are not unfairly penalized for irrelevant capabilities</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-11" data-track="execution" data-status="in-progress" open>
+        <summary class="phase__summary">
+          <span class="phase__num">11</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Unified Recommendation Engine</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Execution</span>
+              <span>·</span>
+              <span>17/25 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            <span class="pill pill--in-progress">In progress</span>
+            <span class="bar" role="img" aria-label="17 of 25 tasks done">
+              <span class="bar__done" style="width:68.00%"></span>
+              <span class="bar__partial" style="width:8.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Connect GEO and readiness evidence into one prioritized action queue.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-8">Phase 8</a> <a href="#phase-10">Phase 10</a></p>
+          <ul class="tasks">
+            <li class="task task--done" data-text="recommendation entity upgrade"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Recommendation entity upgrade</span></li>
+            <li class="task task--not-started" data-text="visibility recommendations"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Visibility recommendations<span class="task__note">The GEO generator is not written; only readiness produces recommendations so far.</span></span></li>
+            <li class="task task--not-started" data-text="off-page rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Off-page rules</span></li>
+            <li class="task task--not-started" data-text="on-page rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">On-page rules</span></li>
+            <li class="task task--not-started" data-text="technical geo rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Technical GEO rules</span></li>
+            <li class="task task--done" data-text="agent discovery rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Agent discovery rules</span></li>
+            <li class="task task--done" data-text="agent access rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Agent access rules</span></li>
+            <li class="task task--partial" data-text="agent integration rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Agent integration rules<span class="task__note">Covered by the OpenAPI and MCP checks; no dedicated integration rules.</span></span></li>
+            <li class="task task--partial" data-text="agent auth rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Agent auth rules<span class="task__note">Covered by the OAuth-metadata probe; no dedicated auth rules.</span></span></li>
+            <li class="task task--not-started" data-text="payment rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Payment rules</span></li>
+            <li class="task task--done" data-text="recommendation evidence"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Recommendation evidence</span></li>
+            <li class="task task--done" data-text="priority calculation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Priority calculation</span></li>
+            <li class="task task--done" data-text="confidence"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Confidence</span></li>
+            <li class="task task--done" data-text="effort estimate"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Effort estimate</span></li>
+            <li class="task task--done" data-text="impact estimate"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Impact estimate</span></li>
+            <li class="task task--done" data-text="todo status"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Todo status</span></li>
+            <li class="task task--done" data-text="in progress status"><span class="task__marker" aria-hidden="true"></span><span class="task__title">In progress status</span></li>
+            <li class="task task--done" data-text="done status"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Done status</span></li>
+            <li class="task task--done" data-text="declined status"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Declined status</span></li>
+            <li class="task task--done" data-text="blocked status"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Blocked status</span></li>
+            <li class="task task--done" data-text="verification plan"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Verification plan</span></li>
+            <li class="task task--not-started" data-text="verification result"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Verification result<span class="task__note">Verification plans are generated; nothing records whether a re-scan confirmed the fix.</span></span></li>
+            <li class="task task--done" data-text="recommendation history"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Recommendation history</span></li>
+            <li class="task task--done" data-text="recommendation dedupe"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Recommendation dedupe</span></li>
+            <li class="task task--done" data-text="recommendation refresh"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Recommendation refresh</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>Every recommendation explains what is wrong, why it matters, what evidence proves it, what to change, and how to verify the fix</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-12" data-track="readiness" data-status="in-progress" open>
+        <summary class="phase__summary">
+          <span class="phase__num">12</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Agent Journeys</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Agent Readiness</span>
+              <span>·</span>
+              <span>21/26 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            <span class="pill pill--in-progress">In progress</span>
+            <span class="bar" role="img" aria-label="21 of 26 tasks done">
+              <span class="bar__done" style="width:80.77%"></span>
+              <span class="bar__partial" style="width:11.54%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Measure actual agent task completion rather than only static readiness, starting with safe read-only journey types.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-11">Phase 11</a></p>
+          <ul class="tasks">
+            <li class="task task--done" data-text="journeytasktemplate"><span class="task__marker" aria-hidden="true"></span><span class="task__title">JourneyTaskTemplate</span></li>
+            <li class="task task--done" data-text="agentjourney"><span class="task__marker" aria-hidden="true"></span><span class="task__title">AgentJourney</span></li>
+            <li class="task task--done" data-text="journeystep"><span class="task__marker" aria-hidden="true"></span><span class="task__title">JourneyStep</span></li>
+            <li class="task task--done" data-text="curated journey library"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Curated journey library</span></li>
+            <li class="task task--done" data-text="journey executor"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey executor</span></li>
+            <li class="task task--partial" data-text="safe browser/tool runtime"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Safe browser/tool runtime<span class="task__note">Deterministic HTTP traversal through safeFetch; no browser runtime.</span></span></li>
+            <li class="task task--done" data-text="allowed action policy"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Allowed action policy</span></li>
+            <li class="task task--done" data-text="domain scope enforcement"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Domain scope enforcement</span></li>
+            <li class="task task--done" data-text="page-read event"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Page-read event</span></li>
+            <li class="task task--partial" data-text="search event"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Search event<span class="task__note">Path-guessing rather than a search tool; no query engine.</span></span></li>
+            <li class="task task--done" data-text="tool-call event"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Tool-call event</span></li>
+            <li class="task task--done" data-text="observation event"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Observation event</span></li>
+            <li class="task task--done" data-text="task success criteria"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Task success criteria</span></li>
+            <li class="task task--done" data-text="completion score"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Completion score</span></li>
+            <li class="task task--done" data-text="failure taxonomy"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Failure taxonomy</span></li>
+            <li class="task task--done" data-text="friction extraction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Friction extraction</span></li>
+            <li class="task task--done" data-text="journey timeline ui"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey timeline UI<span class="task__note">Journey timeline with per-step outcome, observation and friction.</span></span></li>
+            <li class="task task--done" data-text="journey summary"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey summary</span></li>
+            <li class="task task--done" data-text="journey replay/log"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey replay/log</span></li>
+            <li class="task task--partial" data-text="journey to recommendation mapping"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey to recommendation mapping<span class="task__note">journeyCorrelation() feeds the prioritisation formula; nothing calls it yet.</span></span></li>
+            <li class="task task--done" data-text="journey rate limiting"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey rate limiting</span></li>
+            <li class="task task--done" data-text="journey cost accounting"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey cost accounting</span></li>
+            <li class="task task--not-started" data-text="journey cancellation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey cancellation</span></li>
+            <li class="task task--done" data-text="journey timeout"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey timeout</span></li>
+            <li class="task task--done" data-text="journey security review"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey security review<span class="task__note">Policy tested as a security boundary: default-deny, tool allowlist, scope, budgets.</span></span></li>
+            <li class="task task--not-started" data-text="implement safe mvp read-only journey types (discover product, understand product, find pricing, find documentation, find api, find mcp, understand authentication)"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Implement safe MVP read-only journey types (discover product, understand product, find pricing, find documentation, find API, find MCP, understand authentication)</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A user can watch an agent attempt a real task and see exactly where the task failed</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-13" data-track="execution" data-status="not-started">
+        <summary class="phase__summary">
+          <span class="phase__num">13</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Content Execution</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Execution</span>
+              <span>·</span>
+              <span>0/23 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            
+            <span class="bar" role="img" aria-label="0 of 23 tasks done">
+              <span class="bar__done" style="width:0.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Turn recommendations into owned-content changes users can publish.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-11">Phase 11</a></p>
+          <ul class="tasks">
+            <li class="task task--not-started" data-text="contenttemplate"><span class="task__marker" aria-hidden="true"></span><span class="task__title">ContentTemplate</span></li>
+            <li class="task task--not-started" data-text="contentdocument"><span class="task__marker" aria-hidden="true"></span><span class="task__title">ContentDocument</span></li>
+            <li class="task task--not-started" data-text="template categories"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Template categories</span></li>
+            <li class="task task--not-started" data-text="template search"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Template search</span></li>
+            <li class="task task--not-started" data-text="favorite templates"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Favorite templates</span></li>
+            <li class="task task--not-started" data-text="smart suggestion"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Smart suggestion</span></li>
+            <li class="task task--not-started" data-text="blog post template"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Blog post template</span></li>
+            <li class="task task--not-started" data-text="comparison template"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Comparison template</span></li>
+            <li class="task task--not-started" data-text="how-to template"><span class="task__marker" aria-hidden="true"></span><span class="task__title">How-to template</span></li>
+            <li class="task task--not-started" data-text="product page template"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Product page template</span></li>
+            <li class="task task--not-started" data-text="category page template"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Category page template</span></li>
+            <li class="task task--not-started" data-text="brief generation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Brief generation</span></li>
+            <li class="task task--not-started" data-text="draft generation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Draft generation</span></li>
+            <li class="task task--not-started" data-text="source-evidence injection"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Source-evidence injection</span></li>
+            <li class="task task--not-started" data-text="prompt-evidence injection"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt-evidence injection</span></li>
+            <li class="task task--not-started" data-text="brand guidance"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Brand guidance</span></li>
+            <li class="task task--not-started" data-text="editor"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Editor</span></li>
+            <li class="task task--not-started" data-text="autosave"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Autosave</span></li>
+            <li class="task task--not-started" data-text="revision history"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Revision history</span></li>
+            <li class="task task--not-started" data-text="validation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Validation</span></li>
+            <li class="task task--not-started" data-text="content-to-recommendation link"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Content-to-recommendation link</span></li>
+            <li class="task task--not-started" data-text="export"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Export</span></li>
+            <li class="task task--not-started" data-text="cms publishing adapter (later)"><span class="task__marker" aria-hidden="true"></span><span class="task__title">CMS publishing adapter (later)</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A high-priority content recommendation can generate a traceable draft that uses the underlying prompt/source evidence</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-14" data-track="execution" data-status="not-started">
+        <summary class="phase__summary">
+          <span class="phase__num">14</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Workflows and Automation</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Execution</span>
+              <span>·</span>
+              <span>0/26 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            
+            <span class="bar" role="img" aria-label="0 of 26 tasks done">
+              <span class="bar__done" style="width:0.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Create a repeatable optimization operating system by letting users chain visibility, readiness, recommendation, and content nodes into automations, e.g. a weekly trigger that finds prompts losing visibility, finds source gaps, generates a content brief, routes it through human approval, creates a CMS draft, and posts a Slack notification; or a deployment-triggered readiness scan that opens an engineering task and notifies Slack when a critical check fails.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-12">Phase 12</a> <a href="#phase-13">Phase 13</a></p>
+          <ul class="tasks">
+            <li class="task task--not-started" data-text="workflow"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Workflow</span></li>
+            <li class="task task--not-started" data-text="workflownode"><span class="task__marker" aria-hidden="true"></span><span class="task__title">WorkflowNode</span></li>
+            <li class="task task--not-started" data-text="workflowedge"><span class="task__marker" aria-hidden="true"></span><span class="task__title">WorkflowEdge</span></li>
+            <li class="task task--not-started" data-text="workflowrun"><span class="task__marker" aria-hidden="true"></span><span class="task__title">WorkflowRun</span></li>
+            <li class="task task--not-started" data-text="workflow validator"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Workflow validator</span></li>
+            <li class="task task--not-started" data-text="manual trigger"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Manual trigger</span></li>
+            <li class="task task--not-started" data-text="scheduled trigger"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Scheduled trigger</span></li>
+            <li class="task task--not-started" data-text="data input nodes"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Data input nodes</span></li>
+            <li class="task task--not-started" data-text="visibility query node"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Visibility query node</span></li>
+            <li class="task task--not-started" data-text="readiness scan node"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Readiness scan node</span></li>
+            <li class="task task--not-started" data-text="recommendation node"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Recommendation node</span></li>
+            <li class="task task--not-started" data-text="ai generation node"><span class="task__marker" aria-hidden="true"></span><span class="task__title">AI generation node</span></li>
+            <li class="task task--not-started" data-text="transform node"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Transform node</span></li>
+            <li class="task task--not-started" data-text="human approval node"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Human approval node</span></li>
+            <li class="task task--not-started" data-text="http/api node"><span class="task__marker" aria-hidden="true"></span><span class="task__title">HTTP/API node</span></li>
+            <li class="task task--not-started" data-text="slack node"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Slack node</span></li>
+            <li class="task task--not-started" data-text="wordpress/cms node"><span class="task__marker" aria-hidden="true"></span><span class="task__title">WordPress/CMS node</span></li>
+            <li class="task task--not-started" data-text="notification node"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Notification node</span></li>
+            <li class="task task--not-started" data-text="branching"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Branching</span></li>
+            <li class="task task--not-started" data-text="failure routing"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Failure routing</span></li>
+            <li class="task task--not-started" data-text="retry"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Retry</span></li>
+            <li class="task task--not-started" data-text="run history"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Run history</span></li>
+            <li class="task task--not-started" data-text="node-level logs"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Node-level logs</span></li>
+            <li class="task task--not-started" data-text="draft workflow templates"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Draft workflow templates</span></li>
+            <li class="task task--not-started" data-text="permissions"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Permissions</span></li>
+            <li class="task task--not-started" data-text="quotas"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Quotas</span></li>
+          </ul>
+          
+        </div>
+      </details>
+      <details class="phase" id="phase-15" data-track="devex" data-status="not-started">
+        <summary class="phase__summary">
+          <span class="phase__num">15</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Developer Tooling: MCP, CLI and CI</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Developer experience</span>
+              <span>·</span>
+              <span>0/25 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            
+            <span class="bar" role="img" aria-label="0 of 25 tasks done">
+              <span class="bar__done" style="width:0.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Make the product part of engineering workflows via an authenticated API, MCP server, and CLI usable in CI.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-14">Phase 14</a></p>
+          <ul class="tasks">
+            <li class="task task--not-started" data-text="public/api authentication"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Public/API authentication</span></li>
+            <li class="task task--not-started" data-text="api key model"><span class="task__marker" aria-hidden="true"></span><span class="task__title">API key model</span></li>
+            <li class="task task--not-started" data-text="scoped tokens"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Scoped tokens</span></li>
+            <li class="task task--not-started" data-text="mcp server"><span class="task__marker" aria-hidden="true"></span><span class="task__title">MCP server</span></li>
+            <li class="task task--not-started" data-text="get_visibility_summary tool"><span class="task__marker" aria-hidden="true"></span><span class="task__title">get_visibility_summary tool</span></li>
+            <li class="task task--not-started" data-text="get_prompt_gaps tool"><span class="task__marker" aria-hidden="true"></span><span class="task__title">get_prompt_gaps tool</span></li>
+            <li class="task task--not-started" data-text="scan_agent_readiness tool"><span class="task__marker" aria-hidden="true"></span><span class="task__title">scan_agent_readiness tool</span></li>
+            <li class="task task--not-started" data-text="get_readiness_score tool"><span class="task__marker" aria-hidden="true"></span><span class="task__title">get_readiness_score tool</span></li>
+            <li class="task task--not-started" data-text="list_readiness_checks tool"><span class="task__marker" aria-hidden="true"></span><span class="task__title">list_readiness_checks tool</span></li>
+            <li class="task task--not-started" data-text="run_readiness_checks tool"><span class="task__marker" aria-hidden="true"></span><span class="task__title">run_readiness_checks tool</span></li>
+            <li class="task task--not-started" data-text="start_agent_journey tool"><span class="task__marker" aria-hidden="true"></span><span class="task__title">start_agent_journey tool</span></li>
+            <li class="task task--not-started" data-text="get_agent_journey tool"><span class="task__marker" aria-hidden="true"></span><span class="task__title">get_agent_journey tool</span></li>
+            <li class="task task--not-started" data-text="list_recommendations tool"><span class="task__marker" aria-hidden="true"></span><span class="task__title">list_recommendations tool</span></li>
+            <li class="task task--not-started" data-text="skills resource"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Skills resource</span></li>
+            <li class="task task--not-started" data-text="cli"><span class="task__marker" aria-hidden="true"></span><span class="task__title">CLI</span></li>
+            <li class="task task--not-started" data-text="audit command"><span class="task__marker" aria-hidden="true"></span><span class="task__title">audit command</span></li>
+            <li class="task task--not-started" data-text="--json flag"><span class="task__marker" aria-hidden="true"></span><span class="task__title">--json flag</span></li>
+            <li class="task task--not-started" data-text="--min-readiness flag"><span class="task__marker" aria-hidden="true"></span><span class="task__title">--min-readiness flag</span></li>
+            <li class="task task--not-started" data-text="explicit check gates"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Explicit check gates</span></li>
+            <li class="task task--not-started" data-text="localhost tunnel support"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Localhost tunnel support</span></li>
+            <li class="task task--not-started" data-text="github actions example"><span class="task__marker" aria-hidden="true"></span><span class="task__title">GitHub Actions example</span></li>
+            <li class="task task--not-started" data-text="ci status output"><span class="task__marker" aria-hidden="true"></span><span class="task__title">CI status output</span></li>
+            <li class="task task--not-started" data-text="machine-readable exit codes"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Machine-readable exit codes</span></li>
+            <li class="task task--not-started" data-text="rate-limit responses"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Rate-limit responses</span></li>
+            <li class="task task--not-started" data-text="sdk baseline"><span class="task__marker" aria-hidden="true"></span><span class="task__title">SDK baseline</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A coding agent can scan a local project, fix a failing readiness check, and re-verify it without using the browser UI</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-16" data-track="platform" data-status="not-started">
+        <summary class="phase__summary">
+          <span class="phase__num">16</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Monitoring, Alerts and Reporting</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Platform</span>
+              <span>·</span>
+              <span>0/20 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            
+            <span class="bar" role="img" aria-label="0 of 20 tasks done">
+              <span class="bar__done" style="width:0.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Turn one-time analysis into a recurring product by scheduling checks and surfacing what changed, when, and why.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-15">Phase 15</a></p>
+          <ul class="tasks">
+            <li class="task task--not-started" data-text="monitoringrule"><span class="task__marker" aria-hidden="true"></span><span class="task__title">MonitoringRule</span></li>
+            <li class="task task--not-started" data-text="scheduled visibility checks"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Scheduled visibility checks</span></li>
+            <li class="task task--not-started" data-text="scheduled readiness scans"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Scheduled readiness scans</span></li>
+            <li class="task task--not-started" data-text="visibility-drop alerts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Visibility-drop alerts</span></li>
+            <li class="task task--not-started" data-text="competitor-overtake alerts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Competitor-overtake alerts</span></li>
+            <li class="task task--not-started" data-text="citation-source change alerts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Citation-source change alerts</span></li>
+            <li class="task task--not-started" data-text="sentiment-drop alerts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Sentiment-drop alerts</span></li>
+            <li class="task task--not-started" data-text="readiness-drop alerts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Readiness-drop alerts</span></li>
+            <li class="task task--not-started" data-text="critical-check regression alerts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Critical-check regression alerts</span></li>
+            <li class="task task--not-started" data-text="journey-failure alerts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey-failure alerts</span></li>
+            <li class="task task--not-started" data-text="usage-limit alerts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Usage-limit alerts</span></li>
+            <li class="task task--not-started" data-text="email notifications"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Email notifications</span></li>
+            <li class="task task--not-started" data-text="in-app notifications"><span class="task__marker" aria-hidden="true"></span><span class="task__title">In-app notifications</span></li>
+            <li class="task task--not-started" data-text="slack notifications"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Slack notifications</span></li>
+            <li class="task task--not-started" data-text="weekly summary"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Weekly summary</span></li>
+            <li class="task task--not-started" data-text="monthly executive report"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Monthly executive report</span></li>
+            <li class="task task--not-started" data-text="score history"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Score history</span></li>
+            <li class="task task--not-started" data-text="methodology-change annotations"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Methodology-change annotations</span></li>
+            <li class="task task--not-started" data-text="deployment annotations"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Deployment annotations</span></li>
+            <li class="task task--not-started" data-text="content-change annotations"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Content-change annotations</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A user can understand what changed, when, and why</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-17" data-track="platform" data-status="not-started">
+        <summary class="phase__summary">
+          <span class="phase__num">17</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Collaboration, Billing and Enterprise</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Platform</span>
+              <span>·</span>
+              <span>0/25 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            
+            <span class="bar" role="img" aria-label="0 of 25 tasks done">
+              <span class="bar__done" style="width:0.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Turn the platform into a scalable SaaS business with team collaboration, subscription billing, and enterprise controls.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-16">Phase 16</a></p>
+          <ul class="tasks">
+            <li class="task task--not-started" data-text="invitations"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Invitations</span></li>
+            <li class="task task--not-started" data-text="member management"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Member management</span></li>
+            <li class="task task--not-started" data-text="role permissions"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Role permissions</span></li>
+            <li class="task task--not-started" data-text="audit logs"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Audit logs</span></li>
+            <li class="task task--not-started" data-text="subscription plans"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Subscription plans</span></li>
+            <li class="task task--not-started" data-text="trial"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Trial</span></li>
+            <li class="task task--not-started" data-text="prompt limits"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt limits</span></li>
+            <li class="task task--not-started" data-text="ai-answer limits"><span class="task__marker" aria-hidden="true"></span><span class="task__title">AI-answer limits</span></li>
+            <li class="task task--not-started" data-text="scan limits"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Scan limits</span></li>
+            <li class="task task--not-started" data-text="journey limits"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey limits</span></li>
+            <li class="task task--not-started" data-text="workflow limits"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Workflow limits</span></li>
+            <li class="task task--not-started" data-text="usageledger"><span class="task__marker" aria-hidden="true"></span><span class="task__title">UsageLedger</span></li>
+            <li class="task task--not-started" data-text="checkout"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Checkout</span></li>
+            <li class="task task--not-started" data-text="billing portal"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Billing portal</span></li>
+            <li class="task task--not-started" data-text="upgrade"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Upgrade</span></li>
+            <li class="task task--not-started" data-text="downgrade"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Downgrade</span></li>
+            <li class="task task--not-started" data-text="cancel at period end"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Cancel at period end</span></li>
+            <li class="task task--not-started" data-text="invoice history"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Invoice history</span></li>
+            <li class="task task--not-started" data-text="billing webhooks"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Billing webhooks</span></li>
+            <li class="task task--not-started" data-text="idempotency"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Idempotency</span></li>
+            <li class="task task--not-started" data-text="sso"><span class="task__marker" aria-hidden="true"></span><span class="task__title">SSO</span></li>
+            <li class="task task--not-started" data-text="enterprise account settings"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Enterprise account settings</span></li>
+            <li class="task task--not-started" data-text="api quotas"><span class="task__marker" aria-hidden="true"></span><span class="task__title">API quotas</span></li>
+            <li class="task task--not-started" data-text="data retention options"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Data retention options</span></li>
+            <li class="task task--not-started" data-text="export/delete compliance flows"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Export/delete compliance flows</span></li>
+          </ul>
+          
+        </div>
+      </details>
+      <details class="phase" id="phase-18" data-track="execution" data-status="not-started">
+        <summary class="phase__summary">
+          <span class="phase__num">18</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Integrations</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Execution</span>
+              <span>·</span>
+              <span>0/9 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            
+            <span class="bar" role="img" aria-label="0 of 9 tasks done">
+              <span class="bar__done" style="width:0.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Connect analysis to the customer's existing operating stack, prioritizing analytics/search-console connectors that can validate whether AI visibility gains translate into referral traffic and conversions, and whether readiness improvements correlate with agent-originated usage.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-17">Phase 17</a></p>
+          <ul class="tasks">
+            <li class="task task--not-started" data-text="google analytics / ga4 integration"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Google Analytics / GA4 integration</span></li>
+            <li class="task task--not-started" data-text="google search console integration"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Google Search Console integration</span></li>
+            <li class="task task--not-started" data-text="slack integration"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Slack integration</span></li>
+            <li class="task task--not-started" data-text="wordpress integration"><span class="task__marker" aria-hidden="true"></span><span class="task__title">WordPress integration</span></li>
+            <li class="task task--not-started" data-text="generic cms integration"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Generic CMS integration</span></li>
+            <li class="task task--not-started" data-text="generic webhook integration"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Generic Webhook integration</span></li>
+            <li class="task task--not-started" data-text="api integration"><span class="task__marker" aria-hidden="true"></span><span class="task__title">API integration</span></li>
+            <li class="task task--not-started" data-text="project-management connector"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Project-management connector</span></li>
+            <li class="task task--not-started" data-text="data warehouse/export integration"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Data warehouse/export integration</span></li>
+          </ul>
+          
+        </div>
+      </details>
+      <details class="phase" id="phase-19" data-track="network" data-status="not-started">
+        <summary class="phase__summary">
+          <span class="phase__num">19</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Public Score, Badge and Competitive Growth Loop</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Network</span>
+              <span>·</span>
+              <span>0/10 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            
+            <span class="bar" role="img" aria-label="0 of 10 tasks done">
+              <span class="bar__done" style="width:0.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Create a product-led acquisition loop built around a shareable public readiness score and badge.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-18">Phase 18</a></p>
+          <ul class="tasks">
+            <li class="task task--not-started" data-text="public score page"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Public score page</span></li>
+            <li class="task task--not-started" data-text="public readiness badge"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Public readiness badge</span></li>
+            <li class="task task--not-started" data-text="share image"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Share image</span></li>
+            <li class="task task--not-started" data-text="share markdown"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Share Markdown</span></li>
+            <li class="task task--not-started" data-text="public comparison"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Public comparison</span></li>
+            <li class="task task--not-started" data-text="category percentile"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Category percentile</span></li>
+            <li class="task task--not-started" data-text="historical score teaser"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Historical score teaser</span></li>
+            <li class="task task--not-started" data-text="email-gated advanced competitive analytics"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Email-gated advanced competitive analytics</span></li>
+            <li class="task task--not-started" data-text="public seo-safe pages"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Public SEO-safe pages</span></li>
+            <li class="task task--not-started" data-text="signed score attestation (later)"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Signed score attestation (later)</span></li>
+          </ul>
+          <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>Private workspace AI prompt data is never exposed publicly</li></ul></div>
+        </div>
+      </details>
+      <details class="phase" id="phase-20" data-track="network" data-status="not-started">
+        <summary class="phase__summary">
+          <span class="phase__num">20</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Agent Feedback</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Network</span>
+              <span>·</span>
+              <span>0/12 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            
+            <span class="bar" role="img" aria-label="0 of 12 tasks done">
+              <span class="bar__done" style="width:0.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Add real-world agent experience as a trust signal, once there is enough scan volume, journey volume, agent verification, and abuse controls in place.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-19">Phase 19</a></p>
+          <ul class="tasks">
+            <li class="task task--not-started" data-text="agent identity"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Agent identity</span></li>
+            <li class="task task--not-started" data-text="verification challenge"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Verification challenge</span></li>
+            <li class="task task--not-started" data-text="structured feedback"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Structured feedback</span></li>
+            <li class="task task--not-started" data-text="feedback moderation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Feedback moderation</span></li>
+            <li class="task task--not-started" data-text="spam detection"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Spam detection</span></li>
+            <li class="task task--not-started" data-text="duplicate detection"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Duplicate detection</span></li>
+            <li class="task task--not-started" data-text="outcome aggregation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Outcome aggregation</span></li>
+            <li class="task task--not-started" data-text="recommend rate"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Recommend rate</span></li>
+            <li class="task task--not-started" data-text="success rate"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Success rate</span></li>
+            <li class="task task--not-started" data-text="friction taxonomy"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Friction taxonomy</span></li>
+            <li class="task task--not-started" data-text="public/private modes"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Public/private modes</span></li>
+            <li class="task task--not-started" data-text="feedback to recommendation loop"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Feedback to recommendation loop</span></li>
+          </ul>
+          
+        </div>
+      </details>
+      <details class="phase" id="phase-21" data-track="network" data-status="not-started">
+        <summary class="phase__summary">
+          <span class="phase__num">21</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Agent-Ready Directory</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Network</span>
+              <span>·</span>
+              <span>0/12 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            
+            <span class="bar" role="img" aria-label="0 of 12 tasks done">
+              <span class="bar__done" style="width:0.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Create machine-readable discovery infrastructure. This is a network-effect product and should not be built early — it becomes valuable only after the scanner and data network are mature.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-20">Phase 20</a></p>
+          <ul class="tasks">
+            <li class="task task--not-started" data-text="directoryresource"><span class="task__marker" aria-hidden="true"></span><span class="task__title">DirectoryResource</span></li>
+            <li class="task task--not-started" data-text="capability ontology"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Capability ontology</span></li>
+            <li class="task task--not-started" data-text="resource verification"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Resource verification</span></li>
+            <li class="task task--not-started" data-text="human directory"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Human directory</span></li>
+            <li class="task task--not-started" data-text="structured search api"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Structured search API</span></li>
+            <li class="task task--not-started" data-text="readiness weighting"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Readiness weighting</span></li>
+            <li class="task task--not-started" data-text="journey-success weighting"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Journey-success weighting</span></li>
+            <li class="task task--not-started" data-text="agent-feedback weighting"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Agent-feedback weighting</span></li>
+            <li class="task task--not-started" data-text="federation model (later)"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Federation model (later)</span></li>
+            <li class="task task--not-started" data-text="signed attestations"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Signed attestations</span></li>
+            <li class="task task--not-started" data-text="category browsing"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Category browsing</span></li>
+            <li class="task task--not-started" data-text="search analytics"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Search analytics</span></li>
+          </ul>
+          
+        </div>
+      </details>
+      <details class="phase" id="phase-22" data-track="platform" data-status="not-started">
+        <summary class="phase__summary">
+          <span class="phase__num">22</span>
+          <span class="phase__main">
+            <h3 class="phase__title">Composite AI Presence Score</h3>
+            <span class="phase__meta">
+              <span class="phase__track">Platform</span>
+              <span>·</span>
+              <span>0/8 tasks</span>
+            </span>
+          </span>
+          <span class="phase__aside">
+            
+            <span class="bar" role="img" aria-label="0 of 8 tasks done">
+              <span class="bar__done" style="width:0.00%"></span>
+              <span class="bar__partial" style="width:0.00%"></span>
+            </span>
+          </span>
+        </summary>
+        <div class="phase__body">
+          <p class="phase__goal">Potentially simplify executive reporting with a single composite score, but only once there is enough observed data to calibrate weights; do not invent arbitrary weights in advance.</p>
+          <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-21">Phase 21</a></p>
+          <ul class="tasks">
+            <li class="task task--not-started" data-text="model visibility as a candidate composite input"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Model visibility as a candidate composite input</span></li>
+            <li class="task task--not-started" data-text="model rank as a candidate composite input"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Model rank as a candidate composite input</span></li>
+            <li class="task task--not-started" data-text="model citation authority as a candidate composite input"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Model citation authority as a candidate composite input</span></li>
+            <li class="task task--not-started" data-text="model sentiment as a candidate composite input"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Model sentiment as a candidate composite input</span></li>
+            <li class="task task--not-started" data-text="model readiness as a candidate composite input"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Model readiness as a candidate composite input</span></li>
+            <li class="task task--not-started" data-text="model journey success as a candidate composite input"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Model journey success as a candidate composite input</span></li>
+            <li class="task task--not-started" data-text="fit and validate the composite model against real business outcomes"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Fit and validate the composite model against real business outcomes</span></li>
+            <li class="task task--not-started" data-text="show the underlying components even after a composite score exists"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Show the underlying components even after a composite score exists</span></li>
+          </ul>
+          
+        </div>
+      </details>
+    </div>
+
+    <p class="legend">
+      <span><i style="background:var(--done)"></i> Done</span>
+      <span><i style="background:var(--partial)"></i> In progress</span>
+      <span><i></i> Not started</span>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Release ladder</h2>
+      <p class="section__note">Which phases have to be finished before each release can ship.</p>
+    </div>
+    <div class="releases">
+      <article class="release">
+        <span class="release__letter">A</span>
+        <div>
+          <h3 class="release__name">Internal Alpha</h3>
+          <p class="release__summary">Auth, workspace, brand, prompt CRUD, one provider, raw answer storage, and the analysis pipeline. No customer access.</p>
+          <p class="release__phases"><a href="#phase-1">P1</a> <a href="#phase-2">P2</a> <a href="#phase-3">P3</a> <a href="#phase-4">P4</a> <a href="#phase-5">P5</a></p>
+        </div>
+      </article>
+      <article class="release">
+        <span class="release__letter">B</span>
+        <div>
+          <h3 class="release__name">GEO Private Beta</h3>
+          <p class="release__summary">Overview, Prompts, Chats, Sources, competitor analysis, and basic suggested prompts. First paid-value candidate.</p>
+          <p class="release__phases"><a href="#phase-6">P6</a> <a href="#phase-7">P7</a> <a href="#phase-8">P8</a></p>
+        </div>
+      </article>
+      <article class="release">
+        <span class="release__letter">C</span>
+        <div>
+          <h3 class="release__name">GEO Optimization Beta</h3>
+          <p class="release__summary">Adds on-page, off-page, and technical GEO recommendations plus content drafts.</p>
+          <p class="release__phases"><a href="#phase-11">P11</a> <a href="#phase-13">P13</a></p>
+        </div>
+      </article>
+      <article class="release">
+        <span class="release__letter">D</span>
+        <div>
+          <h3 class="release__name">Agent Readiness Beta</h3>
+          <p class="release__summary">Adds domain scan, readiness score, checks, history, targeted re-check, and the Essentials view.</p>
+          <p class="release__phases"><a href="#phase-9">P9</a> <a href="#phase-10">P10</a></p>
+        </div>
+      </article>
+      <article class="release">
+        <span class="release__letter">E</span>
+        <div>
+          <h3 class="release__name">Agent Journey Beta</h3>
+          <p class="release__summary">Adds curated real agent journeys, journey failure analysis, and journey-derived recommendations.</p>
+          <p class="release__phases"><a href="#phase-12">P12</a></p>
+        </div>
+      </article>
+      <article class="release">
+        <span class="release__letter">F</span>
+        <div>
+          <h3 class="release__name">Automation / Developer Release</h3>
+          <p class="release__summary">Adds workflows, MCP, CLI, CI gates, and agent skills.</p>
+          <p class="release__phases"><a href="#phase-14">P14</a> <a href="#phase-15">P15</a></p>
+        </div>
+      </article>
+      <article class="release">
+        <span class="release__letter">G</span>
+        <div>
+          <h3 class="release__name">Enterprise</h3>
+          <p class="release__summary">Adds SSO, advanced permissions, reporting, larger quotas, integrations, and audit/security controls.</p>
+          <p class="release__phases"><a href="#phase-16">P16</a> <a href="#phase-17">P17</a> <a href="#phase-18">P18</a></p>
+        </div>
+      </article>
+      <article class="release">
+        <span class="release__letter">H</span>
+        <div>
+          <h3 class="release__name">Network Layer</h3>
+          <p class="release__summary">Adds gradually: public badge, public comparison, agent feedback, directory, and attestations.</p>
+          <p class="release__phases"><a href="#phase-19">P19</a> <a href="#phase-20">P20</a> <a href="#phase-21">P21</a></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Acceptance criteria</h2>
+      <p class="section__note">
+        The nine checklists the finished product is measured against. These are the definition of
+        done for the whole system, not for any single phase.
+      </p>
+    </div>
+    <div class="accept">
+      <article class="accept__card">
+        <span class="accept__id">30.1</span>
+        <h3 class="accept__title">Core GEO End-to-End</h3>
+        <ol><li>User authenticates.</li><li>User creates workspace.</li><li>User creates brand/domain.</li><li>User chooses market/platform.</li><li>User creates prompt.</li><li>Scheduler creates PromptRun.</li><li>Provider adapter executes.</li><li>AIAnswer persists.</li><li>Brand mention extraction completes.</li><li>Competitors are detected.</li><li>Rank is calculated.</li><li>Sentiment is calculated.</li><li>Citations are normalized.</li><li>Metrics aggregate.</li><li>Overview displays real data.</li><li>Prompt Detail displays real data.</li><li>Chat Preview opens original evidence.</li><li>Source Detail shows citations.</li><li>Data persists across sessions.</li><li>Cross-workspace access is rejected.</li></ol>
+      </article>
+      <article class="accept__card">
+        <span class="accept__id">30.2</span>
+        <h3 class="accept__title">Readiness Scan End-to-End</h3>
+        <ol><li>User selects a brand domain.</li><li>User starts scan.</li><li>API returns job immediately.</li><li>Target kind is detected.</li><li>Applicable methodology version is attached.</li><li>Applicable checks run.</li><li>N/A checks are excluded correctly.</li><li>Evidence is persisted.</li><li>Layer scores calculate.</li><li>Overall score calculates.</li><li>Grade calculates.</li><li>Failed checks have recommendations.</li><li>Scan UI updates through progress events.</li><li>User can reopen the completed scan.</li><li>User can rerun selected checks.</li><li>Targeted re-check returns fresh evidence.</li><li>Historical full scan remains immutable.</li><li>Methodology version is visible.</li><li>Score differences can be attributed to scan/site/methodology changes.</li><li>SSRF protections prevent private-network scanning.</li></ol>
+      </article>
+      <article class="accept__card">
+        <span class="accept__id">30.3</span>
+        <h3 class="accept__title">Agent Journey End-to-End</h3>
+        <ol><li>User selects a curated task.</li><li>Journey is queued.</li><li>Agent runtime remains scoped to allowed target/action set.</li><li>Pages/tools/actions are recorded.</li><li>Operational trace is persisted.</li><li>Journey can time out safely.</li><li>Journey identifies success/failure.</li><li>Failure receives taxonomy.</li><li>Friction points are generated.</li><li>Journey UI displays timeline.</li><li>Journey links to recommendations.</li><li>No hidden chain-of-thought is exposed/stored as a product dependency.</li></ol>
+      </article>
+      <article class="accept__card">
+        <span class="accept__id">30.4</span>
+        <h3 class="accept__title">Recommendation Quality</h3>
+        <ol><li>What is wrong?</li><li>Why does it matter?</li><li>What evidence supports it?</li><li>What should the user do?</li><li>How difficult is it?</li><li>What is the expected impact?</li><li>How will we verify success?</li><li>A recommendation without evidence or verification is not considered complete.</li></ol>
+      </article>
+      <article class="accept__card">
+        <span class="accept__id">30.5</span>
+        <h3 class="accept__title">Multi-Tenancy</h3>
+        <ol><li>For every resource type (Prompt, Answer, Citation, Scan, CheckResult, Journey, Recommendation, Content, Workflow, Integration, Billing record), a user from Workspace A must not be able to read/mutate Workspace B through direct ID.</li><li>...through guessed ID.</li><li>...through changed URL.</li><li>...through changed API payload.</li><li>...through cached response.</li></ol>
+      </article>
+      <article class="accept__card">
+        <span class="accept__id">30.6</span>
+        <h3 class="accept__title">Background Reliability</h3>
+        <ol><li>Every background job is idempotent.</li><li>Every background job is retryable where appropriate.</li><li>Every background job is observable.</li><li>Every background job is correlated to a workspace.</li><li>Every background job is correlated to source entity.</li><li>Every background job is timeout bounded.</li><li>Duplicate job execution must not double-count usage.</li><li>Duplicate job execution must not double-create metrics.</li><li>Duplicate job execution must not double-send paid actions.</li><li>Duplicate job execution must not duplicate recommendations.</li></ol>
+      </article>
+      <article class="accept__card">
+        <span class="accept__id">30.7</span>
+        <h3 class="accept__title">No-Data Semantics</h3>
+        <ol><li>The product distinguishes: not collected, collecting, partial, zero, unknown, not applicable, failed.</li><li>These states are not interchangeable.</li></ol>
+      </article>
+      <article class="accept__card">
+        <span class="accept__id">30.8</span>
+        <h3 class="accept__title">Security Acceptance</h3>
+        <ol><li>Auth bypass is tested.</li><li>Workspace isolation is tested.</li><li>CSRF is tested.</li><li>XSS from AI answer is tested.</li><li>XSS from crawled HTML is tested.</li><li>SSRF is tested.</li><li>Redirect SSRF is tested.</li><li>DNS rebinding defense appropriate to crawler architecture is tested.</li><li>Upload validation is tested.</li><li>Webhook signature is tested.</li><li>Billing idempotency is tested.</li><li>Secret leakage is tested.</li><li>Overly broad integration scopes are tested.</li><li>Journey action boundary is tested.</li></ol>
+      </article>
+      <article class="accept__card">
+        <span class="accept__id">30.9</span>
+        <h3 class="accept__title">Performance Acceptance</h3>
+        <ol><li>Initial targets should be set and measured, not assumed.</li><li>Suggested SLO: normal API p95 &lt; 500 ms.</li><li>Suggested SLO: cached overview p95 &lt; 1 s.</li><li>Suggested SLO: prompt-run enqueue &lt; 300 ms.</li><li>Suggested SLO: scan enqueue &lt; 300 ms.</li><li>Suggested SLO: long-running work is asynchronous.</li><li>Suggested SLO: UI initial shell is responsive before analytics finish.</li><li>Do not block UI on provider runs or readiness scans.</li></ol>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>
+      Generated from <code>docs/roadmap.json</code> — the source of truth for phase and task status.
+      Regenerate with <code>npm run roadmap</code> after any status change. Derived from the product
+      blueprint at <code>docs/product/blueprint.md</code>.
+    </p>
+    <p>Last generated 2026-08-28.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var STORE = 'citara-roadmap-view';
+  var search = document.getElementById('search');
+  var toggleAll = document.getElementById('toggle-all');
+  var trackButtons = Array.prototype.slice.call(document.querySelectorAll('[data-filter-track]'));
+  var phases = Array.prototype.slice.call(document.querySelectorAll('.phase'));
+  var activeTrack = 'all';
+
+  function readStored() {
+    try { return JSON.parse(localStorage.getItem(STORE) || '{}'); } catch (e) { return {}; }
+  }
+  function writeStored(value) {
+    try { localStorage.setItem(STORE, JSON.stringify(value)); } catch (e) { /* private mode */ }
+  }
+
+  function apply() {
+    var query = (search.value || '').trim().toLowerCase();
+
+    phases.forEach(function (phase) {
+      var trackOk = activeTrack === 'all' || phase.dataset.track === activeTrack;
+      var tasks = Array.prototype.slice.call(phase.querySelectorAll('.task'));
+      var titleText = phase.querySelector('.phase__title').textContent.toLowerCase();
+      var matches = 0;
+
+      tasks.forEach(function (task) {
+        var hit = query === '' || task.dataset.text.indexOf(query) !== -1;
+        task.hidden = !hit;
+        if (hit) matches += 1;
+      });
+
+      var phaseHit = query === '' || titleText.indexOf(query) !== -1 || matches > 0;
+      phase.hidden = !(trackOk && phaseHit);
+
+      // A search should reveal what it found rather than hiding it behind a
+      // collapsed phase.
+      if (query !== '' && phaseHit && matches > 0) phase.open = true;
+    });
+  }
+
+  search.addEventListener('input', function () {
+    apply();
+    var stored = readStored();
+    stored.query = search.value;
+    writeStored(stored);
+  });
+
+  trackButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      activeTrack = button.dataset.filterTrack;
+      trackButtons.forEach(function (other) {
+        other.setAttribute('aria-pressed', String(other === button));
+      });
+      apply();
+      var stored = readStored();
+      stored.track = activeTrack;
+      writeStored(stored);
+    });
+  });
+
+  toggleAll.addEventListener('click', function () {
+    var expand = toggleAll.getAttribute('aria-pressed') !== 'true';
+    toggleAll.setAttribute('aria-pressed', String(expand));
+    toggleAll.textContent = expand ? 'Collapse all' : 'Expand all';
+    phases.forEach(function (phase) { if (!phase.hidden) phase.open = expand; });
+  });
+
+  var stored = readStored();
+  if (stored.track) {
+    var match = trackButtons.filter(function (b) { return b.dataset.filterTrack === stored.track; })[0];
+    if (match) match.click();
+  }
+  if (stored.query) {
+    search.value = stored.query;
+    apply();
+  }
+})();
+</script>

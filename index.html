@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Citara — evidence-first AI visibility</title>
+    <meta
+      name="description"
+      content="Citara measures how AI answers talk about a brand, and how ready a site is for AI agents — and shows the evidence behind every number instead of inventing one."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230d1219'/><circle cx='16' cy='16' r='9' fill='none' stroke='%2357c9be' stroke-width='3' stroke-dasharray='42 15' transform='rotate(-90 16 16)'/></svg>"
+    />
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="shell masthead__inner">
+        <a class="wordmark" href="./">Citara</a>
+        <p class="masthead__tag">AI visibility &amp; agent readiness</p>
+        <nav class="masthead__links" aria-label="Site">
+          <a href="#measurements">What it measures</a>
+          <a href="#product">Product</a>
+          <a href="#status">Build status</a>
+          <a href="roadmap.html">Roadmap</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="shell hero__grid">
+          <div>
+            <p class="eyebrow">Work in progress · self-hosted</p>
+            <h1>Most AI visibility tools show you a number. Citara shows you <em>where it came from</em>.</h1>
+            <p class="hero__sub">
+              A number you cannot trace is decoration. Citara records the answer text, the mention, the
+              citation and the scan result that produced every figure — and when it has measured
+              nothing, it says so instead of drawing a zero.
+            </p>
+            <div class="hero__actions">
+              <a class="btn" href="#product">See the product</a>
+              <a class="btn btn--ghost" href="roadmap.html">459-task roadmap</a>
+            </div>
+          </div>
+
+          <div class="compare" aria-label="Two ways to render an unmeasured metric">
+            <div class="compare__cell compare__cell--wrong">
+              <span class="compare__label">What a dashboard usually does</span>
+              <span class="compare__figure">0%</span>
+              <p class="compare__note">
+                Nothing was collected, so the metric defaults to zero. The customer reads a failure
+                that was never measured.
+              </p>
+            </div>
+            <div class="compare__cell compare__cell--right">
+              <span class="compare__label">What Citara does</span>
+              <span class="compare__figure compare__figure--void">Not collected yet</span>
+              <p class="compare__note">
+                Readiness has no measurements in this period. This is not a score of zero — nothing
+                has been run yet.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="measurements">
+        <div class="shell">
+          <p class="eyebrow">01 — Two measurements</p>
+          <h2 style="font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.75rem); max-width: 20ch">
+            Two questions, deliberately never blended into one.
+          </h2>
+          <p class="lede" style="margin-top: 1.25rem">
+            A single “AI presence score” would average a demand-side signal with a technical one, and
+            hide which of the two is broken. Citara keeps them apart and makes you look at both.
+          </p>
+
+          <div class="split">
+            <div class="split__cell">
+              <h3>AI Visibility</h3>
+              <p>
+                How often AI assistants name your brand when someone asks a question in your market,
+                where you rank against competitors, and which domains get cited in the answer.
+              </p>
+              <ul class="split__list">
+                <li>share of answers</li>
+                <li>average rank position</li>
+                <li>sentiment, sentence-scoped</li>
+                <li>cited source domains</li>
+                <li>competitor co-occurrence</li>
+              </ul>
+            </div>
+            <div class="split__cell">
+              <h3>Agent Readiness</h3>
+              <p>
+                How well an AI agent can discover, retrieve and understand your site — scored against
+                a versioned check catalog, so a result stays comparable to the ones before it.
+              </p>
+              <ul class="split__list">
+                <li>discovery &amp; access</li>
+                <li>content legibility without JS</li>
+                <li>structured data</li>
+                <li>usability for an agent</li>
+                <li>read-only agent journeys</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="rule-note">
+            A check that does not apply to a target is removed from the score and its weight
+            redistributed — never counted as a failure. A domain is not penalised for being a
+            different kind of thing.
+          </p>
+        </div>
+      </section>
+
+      <section id="states">
+        <div class="shell">
+          <p class="eyebrow">02 — The six data states</p>
+          <h2 style="font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.75rem); max-width: 22ch">
+            Six different things that all look like “no number”.
+          </h2>
+          <p class="lede" style="margin-top: 1.25rem">
+            Every metric in the system carries one of these, end to end — through the database, the
+            API and the page. They are never collapsed into each other, because each one calls for a
+            different response from the person reading it.
+          </p>
+
+          <div class="states">
+            <div class="state state--collected">
+              <span class="state__key">Collected</span>
+              <p>A real measurement exists, with the evidence that produced it.</p>
+            </div>
+            <div class="state state--zero">
+              <span class="state__key">Zero</span>
+              <p>Measured, and the answer is genuinely none. Nobody mentioned you.</p>
+            </div>
+            <div class="state state--unknown">
+              <span class="state__key">Unknown</span>
+              <p>Nothing has been collected for this period. Not a zero.</p>
+            </div>
+            <div class="state state--na">
+              <span class="state__key">Not applicable</span>
+              <p>The check does not apply here. Excluded from the score, not failed.</p>
+            </div>
+            <div class="state state--failed">
+              <span class="state__key">Failed</span>
+              <p>The attempt errored. The gap is in the collection, not the subject.</p>
+            </div>
+            <div class="state state--partial">
+              <span class="state__key">Partial</span>
+              <p>Some of the run landed. The figure is real but incomplete, and says so.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="evidence">
+        <div class="shell">
+          <p class="eyebrow">03 — How a number is made</p>
+          <h2 style="font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.75rem); max-width: 20ch">
+            Every figure decomposes back to raw text.
+          </h2>
+          <p class="lede" style="margin-top: 1.25rem">
+            Snapshots are recomputed from evidence, never incremented in place — so a re-run
+            corrects history instead of compounding an error into it.
+          </p>
+
+          <ol class="chain">
+            <li>
+              <h3>Raw answer</h3>
+              <p>
+                The provider’s response is stored verbatim with its model, prompt and run metadata,
+                and treated as untrusted text everywhere it is displayed.
+              </p>
+            </li>
+            <li>
+              <h3>Mentions &amp; citations</h3>
+              <p>
+                Brand mentions are extracted with token boundaries and alias folding; cited URLs are
+                resolved to domains and classified per workspace.
+              </p>
+            </li>
+            <li>
+              <h3>Analysis result</h3>
+              <p>
+                Rank position and sentence-scoped sentiment attach to the specific mention they were
+                derived from, not to the answer as a whole.
+              </p>
+            </li>
+            <li>
+              <h3>Daily snapshot</h3>
+              <p>
+                Aggregates are weighted by the answers behind them and carry their own data state, so
+                a thin day never masquerades as a confident one.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="product">
+        <div class="shell">
+          <p class="eyebrow">04 — The product</p>
+          <h2 style="font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.75rem); max-width: 20ch">
+            Screens from a running instance.
+          </h2>
+          <p class="lede" style="margin-top: 1.25rem">
+            Captured from a local install against a seeded demo workspace. The figures are computed
+            from that workspace’s collected answers — small numbers, but real ones.
+          </p>
+
+          <div class="plates">
+            <figure class="plate plate--wide">
+              <img
+                src="shots/overview.png"
+                alt="Citara overview screen, showing AI Visibility at 66.7% share of answers from 3 answers beside an Agent Readiness panel reading Not collected yet."
+                width="1280"
+                height="633"
+              />
+              <figcaption>
+                <b>Overview</b>
+                Two measurements side by side. Visibility has data; readiness has not been run in
+                this period, and says so rather than showing 0%.
+              </figcaption>
+            </figure>
+
+            <figure class="plate">
+              <img
+                src="shots/readiness-detail.png"
+                alt="Agent readiness detail for example.com: a dial reading 39 out of 100, grade F, with 11 checks scored and a per-layer breakdown."
+                width="1280"
+                height="633"
+                loading="lazy"
+              />
+              <figcaption>
+                <b>Readiness detail</b>
+                The headline decomposes into layers, and each layer states how many checks it scored.
+              </figcaption>
+            </figure>
+
+            <figure class="plate">
+              <img
+                src="shots/recommendations.png"
+                alt="Recommendations list with prioritised cards, each showing severity, effort, a point value and an expandable explanation of its rank."
+                width="1280"
+                height="633"
+                loading="lazy"
+              />
+              <figcaption>
+                <b>Recommendations</b>
+                Ranked from evidence. Each card opens to show the factors that produced its score.
+              </figcaption>
+            </figure>
+
+            <figure class="plate">
+              <img
+                src="shots/sources.png"
+                alt="Sources table listing cited domains with a type label of Yours, Competitor or Unclassified, plus citation counts and share."
+                width="1280"
+                height="633"
+                loading="lazy"
+              />
+              <figcaption>
+                <b>Sources</b>
+                Which domains AI platforms cite when answering your prompts. Ownership is resolved
+                per workspace, so one tenant’s label never leaks into another’s.
+              </figcaption>
+            </figure>
+
+            <figure class="plate">
+              <img
+                src="shots/readiness.png"
+                alt="Agent readiness index listing scanned domains with score, grade, last scanned timestamp and a scan now action."
+                width="1280"
+                height="633"
+                loading="lazy"
+              />
+              <figcaption>
+                <b>Readiness index</b>
+                Every scan pins the catalog version it ran against, so scores stay comparable.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="status">
+        <div class="shell">
+          <p class="eyebrow">05 — Build status</p>
+          <h2 style="font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.75rem); max-width: 22ch">
+            Not a launched product. Here is exactly how far it goes.
+          </h2>
+          <p class="lede" style="margin-top: 1.25rem">
+            The blueprint defines 23 phases. Applying the same rule to itself, this page reports the
+            real count rather than a rounded impression of progress.
+          </p>
+
+          <!-- BUILD-STATUS:START -->
+        <div class="meter-block">
+          <div class="meter-head">
+            <span class="meter-figure">199<span> / 459 tasks</span></span>
+            <span class="meter-caption">43% of the blueprint implemented</span>
+          </div>
+          <div
+            class="meter"
+            role="meter"
+            aria-valuenow="199"
+            aria-valuemin="0"
+            aria-valuemax="459"
+            aria-label="Blueprint tasks completed"
+          >
+            <span style="width: 43.4%"></span>
+          </div>
+
+          <div class="phases">
+          <div class="phase phase--part">
+            <span class="phase__no">00</span>
+            <span class="phase__name" title="Product Contracts, Research Baseline and Repository Skeleton">Product Contracts, Research Baseline and Repository Skeleton</span>
+            <span class="phase__count">19/22</span>
+          </div>
+          <div class="phase phase--part">
+            <span class="phase__no">01</span>
+            <span class="phase__name" title="Identity, Workspace and Tenant Security">Identity, Workspace and Tenant Security</span>
+            <span class="phase__count">23/24</span>
+          </div>
+          <div class="phase phase--part">
+            <span class="phase__no">02</span>
+            <span class="phase__name" title="Brand, Domain, Market and Platform Configuration">Brand, Domain, Market and Platform Configuration</span>
+            <span class="phase__count">14/17</span>
+          </div>
+          <div class="phase phase--part">
+            <span class="phase__no">03</span>
+            <span class="phase__name" title="Prompt Library and Demand Model">Prompt Library and Demand Model</span>
+            <span class="phase__count">17/23</span>
+          </div>
+          <div class="phase phase--part">
+            <span class="phase__no">04</span>
+            <span class="phase__name" title="AI Provider Runner and Evidence Ingestion">AI Provider Runner and Evidence Ingestion</span>
+            <span class="phase__count">15/20</span>
+          </div>
+          <div class="phase phase--part">
+            <span class="phase__no">05</span>
+            <span class="phase__name" title="Answer Analysis">Answer Analysis</span>
+            <span class="phase__count">17/20</span>
+          </div>
+          <div class="phase phase--part">
+            <span class="phase__no">06</span>
+            <span class="phase__name" title="Core GEO Analytics MVP">Core GEO Analytics MVP</span>
+            <span class="phase__count">20/24</span>
+          </div>
+          <div class="phase phase--part">
+            <span class="phase__no">07</span>
+            <span class="phase__name" title="Competitor and Source Intelligence">Competitor and Source Intelligence</span>
+            <span class="phase__count">12/15</span>
+          </div>
+          <div class="phase phase--none">
+            <span class="phase__no">08</span>
+            <span class="phase__name" title="Suggested Prompts and Fanout Research">Suggested Prompts and Fanout Research</span>
+            <span class="phase__count">0/19</span>
+          </div>
+          <div class="phase phase--part">
+            <span class="phase__no">09</span>
+            <span class="phase__name" title="Agent Readiness Scanner Foundation">Agent Readiness Scanner Foundation</span>
+            <span class="phase__count">24/29</span>
+          </div>
+          <div class="phase phase--none">
+            <span class="phase__no">10</span>
+            <span class="phase__name" title="Expanded Agent Readiness and Essentials">Expanded Agent Readiness and Essentials</span>
+            <span class="phase__count">0/25</span>
+          </div>
+          <div class="phase phase--part">
+            <span class="phase__no">11</span>
+            <span class="phase__name" title="Unified Recommendation Engine">Unified Recommendation Engine</span>
+            <span class="phase__count">17/25</span>
+          </div>
+          <div class="phase phase--part">
+            <span class="phase__no">12</span>
+            <span class="phase__name" title="Agent Journeys">Agent Journeys</span>
+            <span class="phase__count">21/26</span>
+          </div>
+          <div class="phase phase--none">
+            <span class="phase__no">13</span>
+            <span class="phase__name" title="Content Execution">Content Execution</span>
+            <span class="phase__count">0/23</span>
+          </div>
+          <div class="phase phase--none">
+            <span class="phase__no">14</span>
+            <span class="phase__name" title="Workflows and Automation">Workflows and Automation</span>
+            <span class="phase__count">0/26</span>
+          </div>
+          <div class="phase phase--none">
+            <span class="phase__no">15</span>
+            <span class="phase__name" title="Developer Tooling: MCP, CLI and CI">Developer Tooling: MCP, CLI and CI</span>
+            <span class="phase__count">0/25</span>
+          </div>
+          <div class="phase phase--none">
+            <span class="phase__no">16</span>
+            <span class="phase__name" title="Monitoring, Alerts and Reporting">Monitoring, Alerts and Reporting</span>
+            <span class="phase__count">0/20</span>
+          </div>
+          <div class="phase phase--none">
+            <span class="phase__no">17</span>
+            <span class="phase__name" title="Collaboration, Billing and Enterprise">Collaboration, Billing and Enterprise</span>
+            <span class="phase__count">0/25</span>
+          </div>
+          <div class="phase phase--none">
+            <span class="phase__no">18</span>
+            <span class="phase__name" title="Integrations">Integrations</span>
+            <span class="phase__count">0/9</span>
+          </div>
+          <div class="phase phase--none">
+            <span class="phase__no">19</span>
+            <span class="phase__name" title="Public Score, Badge and Competitive Growth Loop">Public Score, Badge and Competitive Growth Loop</span>
+            <span class="phase__count">0/10</span>
+          </div>
+          <div class="phase phase--none">
+            <span class="phase__no">20</span>
+            <span class="phase__name" title="Agent Feedback">Agent Feedback</span>
+            <span class="phase__count">0/12</span>
+          </div>
+          <div class="phase phase--none">
+            <span class="phase__no">21</span>
+            <span class="phase__name" title="Agent-Ready Directory">Agent-Ready Directory</span>
+            <span class="phase__count">0/12</span>
+          </div>
+          <div class="phase phase--none">
+            <span class="phase__no">22</span>
+            <span class="phase__name" title="Composite AI Presence Score">Composite AI Presence Score</span>
+            <span class="phase__count">0/8</span>
+          </div>
+          </div>
+        </div>
+        <!-- BUILD-STATUS:END -->
+
+          <p class="lede" style="margin-top: 2rem">
+            Later phases — content execution, workflows, MCP and CLI tooling, alerting, billing and
+            integrations — are specified but not built. The
+            <a href="roadmap.html">full roadmap</a> lists every task and its state.
+          </p>
+        </div>
+      </section>
+
+      <section id="stack">
+        <div class="shell">
+          <p class="eyebrow">06 — How it is built</p>
+          <h2 style="font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.75rem); max-width: 20ch">
+            A modular monolith, tested where it matters.
+          </h2>
+
+          <ul class="stack-list">
+            <li>
+              <b>Application</b>
+              <span>Next.js App Router, React, TypeScript in strict mode</span>
+            </li>
+            <li>
+              <b>Data</b>
+              <span>PostgreSQL with Drizzle; every tenant row carries a workspace id</span>
+            </li>
+            <li>
+              <b>Jobs</b>
+              <span>BullMQ on Redis; each job carries an idempotency key and a correlation id</span>
+            </li>
+            <li>
+              <b>Isolation</b>
+              <span>One access chokepoint; a non-member gets 404, never 403</span>
+            </li>
+            <li>
+              <b>Fetching</b>
+              <span>All user-supplied URLs go through an SSRF guard that pins the resolved address</span>
+            </li>
+            <li>
+              <b>Tests</b>
+              <span>Unit, integration and end-to-end, plus a repo-wide consistency gate in CI</span>
+            </li>
+          </ul>
+
+          <p class="rule-note" style="border-left-color: var(--accent)">
+            The consistency gate enforces nine rules across the whole repository — tenant scoping,
+            route wrappers, untrusted content handling, SSRF containment, data-state semantics,
+            module boundaries and migration drift among them. Breaking one fails the build.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell">
+        <p>Citara — an evidence-first AI visibility and agent readiness system.</p>
+        <nav aria-label="Footer">
+          <a href="roadmap.html">Roadmap</a>
+          <a href="#measurements">What it measures</a>
+          <a href="#status">Build status</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
