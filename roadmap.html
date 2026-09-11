@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Citara Build Roadmap</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -228,62 +232,194 @@ footer code { font-family: var(--font-mono); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 .masthead__back { color: inherit; text-underline-offset: 0.2em; }
 .masthead__back:hover { color: var(--accent, currentColor); }
+.release-progress { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1.5rem; }
+.release-progress article { background: var(--panel); border: 1px solid var(--rule); padding: 1.25rem; border-radius: 12px; }
+.release-progress ul { padding-inline-start: 1.25rem; }
+.release-progress li { margin-block: .7rem; }
+.package-list { display: grid; gap: .75rem; }
+.package-list details { padding: 1rem; background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; }
+.package-list summary { cursor: pointer; overflow-wrap: anywhere; }
+.package-list p { margin-top: .6rem; }
 </style>
 
 <header class="masthead">
   <div class="wrap">
     <p class="masthead__kicker"><a class="masthead__back" href="./">Citara</a> · implementation plan</p>
-    <h1 class="masthead__title">Two measurements,<br>twenty-three phases.</h1>
+    <h1 class="masthead__title">First tester:<br>measure and explain.</h1>
     <p class="masthead__lede">
-      AI Visibility and Agent Readiness are built on one evidence platform but never merged into one
-      number. This is the phase-by-phase plan derived from the product blueprint, with the status of
-      every task as it actually stands in the repository.
+      The immediate release connects business setup, useful prompts, live AI answers, competitive
+      gaps and an evidence-backed next action. Existing Agent Readiness stays available as a
+      separate capability. The preserved phase backlog below is not a tester-readiness percentage.
     </p>
 
     <div class="summary">
       <div class="summary__cell"><span class="summary__value">23</span><span class="summary__label">Phases</span></div>
       <div class="summary__cell"><span class="summary__value">459</span><span class="summary__label">Tasks</span></div>
-      <div class="summary__cell"><span class="summary__value">201</span><span class="summary__label">Done</span></div>
-      <div class="summary__cell"><span class="summary__value">23</span><span class="summary__label">In progress</span></div>
+      <div class="summary__cell"><span class="summary__value">198</span><span class="summary__label">Done</span></div>
+      <div class="summary__cell"><span class="summary__value">26</span><span class="summary__label">In progress</span></div>
     </div>
   </div>
 </header>
 
+<section class="section" id="current-status">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Current release status</h2>
+      <p class="section__note">Updated 2026-09-11 · deployed revision <code>72d1f43</code></p>
+    </div>
+    <p>The tester application is live in English, Turkish, German, French, Spanish and Arabic. Implementation and release acceptance are tracked separately.</p>
+    <p><a href="https://citara.ceylan.world">Open the tester application</a></p>
+    <div class="release-progress">
+      <article><h3>Completed and verified</h3><ul><li>Hetzner HTTPS deployment, database, cache and worker are healthy.</li><li>Tester confirmed email sign-in; public redirects and token replay protection verified.</li><li>Six-language UI, Arabic RTL and downloadable how-to guides deployed.</li><li>901 unit/integration tests passed; public language switching and mobile session preservation passed.</li></ul></article>
+      <article><h3>Current work</h3><ul><li>M0/M3: verify one queued live-provider observation with traceable evidence.</li><li>M8: run the full business → prompts → results → evidence → action workflow against a reproducible runtime.</li></ul></article>
+      <article><h3>Still pending</h3><ul><li>Independent tester walkthrough and feedback.</li><li>B0 editable content brief follows the MVP gate; later roadmap packages remain unchanged.</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work-packages">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Release work packages</h2>
+      <p class="section__note">Implementation describes the code. Acceptance describes verified outcomes. Partial acceptance keeps the remaining checks visible.</p>
+    </div>
+    <div class="package-list">
+      <details open>
+        <summary><strong>M0 · Tester environment and access</strong> — mvp</summary>
+        <p>Implementation: <strong>PARTIAL</strong> · Acceptance: <strong>PARTIAL</strong></p>
+        <p>Deployed at citara.ceylan.world. Tester confirmed email sign-in; secure sessions, Postgres/Redis and worker verified. Open email signup is intentional. Queued live-provider completion still requires evidence.</p>
+      </details><details>
+        <summary><strong>M1 · Business and competitors</strong> — mvp</summary>
+        <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
+        <p>Guided bounded extraction/manual fallback, editable confirmed profile, primary brand/aliases and competitor entry implemented. Relevant automated module checks passed on 2026-09-11; complete browser/live acceptance remains pending.</p>
+      </details><details>
+        <summary><strong>M2 · Prompt suggestions and intent</strong> — mvp</summary>
+        <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
+        <p>Deterministic relevant intent prompts with atomic accept/reject, provenance, English language and stale proposal handling implemented. Relevant automated module checks passed on 2026-09-11; complete browser/live acceptance remains pending.</p>
+      </details><details>
+        <summary><strong>M3 · Live collection and provenance</strong> — mvp</summary>
+        <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
+        <p>Live provenance and fixture exclusion pass controlled integration checks. Configured OpenAI credentials were validated, but an actual queued collection has not yet been recorded.</p>
+      </details><details>
+        <summary><strong>M4 · Trustworthy metrics</strong> — mvp</summary>
+        <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
+        <p>Consistent valid-live cohorts, failed/pending states, rank sample sizes and raw-derived snapshots implemented; controlled observation oracle added. Relevant automated module checks passed on 2026-09-11; complete browser/live acceptance remains pending.</p>
+      </details><details>
+        <summary><strong>M5 · Answer evidence</strong> — mvp</summary>
+        <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
+        <p>Stable scoped answer replay exposes exact text, detections, citation URLs and provider/version metadata. Relevant automated module checks passed on 2026-09-11; complete browser/live acceptance remains pending.</p>
+      </details><details>
+        <summary><strong>M6 · Competitive opportunities</strong> — mvp</summary>
+        <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
+        <p>Dedicated competitor comparison, real prompt losses and explained qualitative opportunity implemented. Relevant automated module checks passed on 2026-09-11; complete browser/live acceptance remains pending.</p>
+      </details><details>
+        <summary><strong>M7 · Evidence-linked recommendations</strong> — mvp</summary>
+        <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
+        <p>Top three evidence-linked competitive/citation actions, refreshable claims and existing lifecycle implemented. Relevant automated module checks passed on 2026-09-11; complete browser/live acceptance remains pending.</p>
+      </details><details open>
+        <summary><strong>M8 · Full workflow and release acceptance</strong> — mvp</summary>
+        <p>Implementation: <strong>PARTIAL</strong> · Acceptance: <strong>PARTIAL</strong></p>
+        <p>Production sign-in and six-language browser checks passed; 901 unit/integration tests passed. Full deterministic walkthrough hit Jetson cold-build timeouts. Current work: reproducible workflow verification and live collection; tester sign-off remains pending.</p>
+      </details><details>
+        <summary><strong>A0 · Optional static readiness</strong> — mvp</summary>
+        <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Optional existing scan; not an MVP gate.</p>
+      </details><details>
+        <summary><strong>B0 · Editable content brief</strong> — v0-2</summary>
+        <p>Implementation: <strong>PLANNED</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>D1 · Content audit and Bot View</strong> — v0-2</summary>
+        <p>Implementation: <strong>PARTIAL</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>D2 · Citation graph and sources</strong> — v0-2</summary>
+        <p>Implementation: <strong>PARTIAL</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>D3 · Demand and search gaps</strong> — v0-2</summary>
+        <p>Implementation: <strong>RESEARCH</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>D4 · History and meaningful alerts</strong> — v0-2</summary>
+        <p>Implementation: <strong>PARTIAL</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>D5 · Recommendation impact ranking</strong> — v0-2</summary>
+        <p>Implementation: <strong>PARTIAL</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>L1 · Experiments and remeasurement</strong> — v0-3</summary>
+        <p>Implementation: <strong>PLANNED</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>L2 · Approved drafts and CMS</strong> — v0-3</summary>
+        <p>Implementation: <strong>PLANNED</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>L3a · Grounded analyst</strong> — v0-3</summary>
+        <p>Implementation: <strong>PLANNED</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>L3b · Public API and MCP</strong> — v0-3</summary>
+        <p>Implementation: <strong>PLANNED</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>L3c · Reports and workflows</strong> — v0-3</summary>
+        <p>Implementation: <strong>PLANNED</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>V1-I · Business impact attribution</strong> — v1</summary>
+        <p>Implementation: <strong>PLANNED</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>R1 · Agent readiness expansion</strong> — v2</summary>
+        <p>Implementation: <strong>PARTIAL</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details><details>
+        <summary><strong>C1 · Agentic commerce research</strong> — v3-commerce</summary>
+        <p>Implementation: <strong>RESEARCH</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
+        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="wrap">
     <div class="section__head">
-      <h2 class="section__title">The two MVP gates</h2>
+      <h2 class="section__title">Today's gate and the preserved readiness foundation</h2>
       <p class="section__note">
-        Neither product counts as delivered because pages render. Each is done only when its whole
-        chain works end to end on real persisted evidence.
+        First-tester acceptance requires the complete GEO workflow on live evidence. Existing
+        readiness is optional; expanding it does not delay the tester. Blueprint section 0 defines
+        the M0–M8 work packages and the full checklist.
       </p>
     </div>
     <div class="gates">
       <article class="gate gate--geo">
-        <p class="gate__label">Gate 1</p>
-        <h3 class="gate__title">Core GEO MVP</h3>
+        <p class="gate__label">Required today</p>
+        <h3 class="gate__title">Measure + Explain</h3>
         <ol class="gate__chain">
-          <li>signup</li>
-          <li>workspace</li>
-          <li>brand</li>
-          <li>prompt</li>
-          <li>provider run</li>
-          <li>persisted AI answer</li>
-          <li>mention analysis</li>
-          <li>competitor analysis</li>
-          <li>rank</li>
-          <li>sentiment</li>
+          <li>sign in</li>
+          <li>confirmed business/domain</li>
+          <li>confirmed competitors</li>
+          <li>relevant proposed prompts</li>
+          <li>intent/relevance</li>
+          <li>supported live provider</li>
+          <li>answer provenance</li>
+          <li>valid mentions and positions</li>
           <li>citations</li>
-          <li>aggregated visibility</li>
-          <li>Overview</li>
-          <li>Prompt Detail</li>
-          <li>Chat evidence</li>
-          <li>Sources</li>
+          <li>explainable visibility</li>
+          <li>competitive losses</li>
+          <li>opportunity bands</li>
+          <li>answer evidence</li>
+          <li>actionable recommendation</li>
+          <li>tester walkthrough</li>
         </ol>
       </article>
       <article class="gate gate--readiness">
-        <p class="gate__label">Gate 2</p>
-        <h3 class="gate__title">Core Agent Readiness MVP</h3>
+        <p class="gate__label">Optional existing capability · expansion in V2</p>
+        <h3 class="gate__title">Agent Readiness foundation</h3>
         <ol class="gate__chain">
           <li>domain</li>
           <li>scan</li>
@@ -307,9 +443,9 @@ footer code { font-family: var(--font-mono); }
     <div class="section__head">
       <h2 class="section__title">Phases</h2>
       <p class="section__note">
-        Ordered by the blueprint's sequencing rule: foundation, then real GEO evidence, then the
-        readiness scanner, then everything that depends on both. Network features come last by
-        design — a leaderboard built on measurements nobody trusts is worth nothing.
+        Original phase identities and detailed tasks are preserved for traceability. The release
+        plan selects bounded slices from them; phase order is no longer the execution order.
+        Current package priorities and known status limitations are in blueprint section 0.
       </p>
     </div>
 
@@ -435,14 +571,14 @@ footer code { font-family: var(--font-mono); }
             <span class="phase__meta">
               <span class="phase__track">Foundation</span>
               <span>·</span>
-              <span>14/17 tasks</span>
+              <span>13/17 tasks</span>
             </span>
           </span>
           <span class="phase__aside">
             <span class="pill pill--in-progress">In progress</span>
-            <span class="bar" role="img" aria-label="14 of 17 tasks done">
-              <span class="bar__done" style="width:82.35%"></span>
-              <span class="bar__partial" style="width:11.76%"></span>
+            <span class="bar" role="img" aria-label="13 of 17 tasks done">
+              <span class="bar__done" style="width:76.47%"></span>
+              <span class="bar__partial" style="width:17.65%"></span>
             </span>
           </span>
         </summary>
@@ -460,7 +596,7 @@ footer code { font-family: var(--font-mono); }
             <li class="task task--done" data-text="workspaceplatform enablement"><span class="task__marker" aria-hidden="true"></span><span class="task__title">WorkspacePlatform enablement</span></li>
             <li class="task task--done" data-text="platform capability metadata"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Platform capability metadata</span></li>
             <li class="task task--partial" data-text="global date/model/location filter state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Global date/model/location filter state<span class="task__note">Date range defaults to 30 days server-side; no shared filter UI yet.</span></span></li>
-            <li class="task task--done" data-text="workspace settings page"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Workspace settings page<span class="task__note">Platforms page with capability flags and per-platform enablement.</span></span></li>
+            <li class="task task--partial" data-text="workspace settings page"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Workspace settings page<span class="task__note">2026-09-10 source reconciliation: Platforms configuration exists, but no complete workspace settings page. Previous done note covered only platform enablement. Preserve that work; M1 consolidates the first-run flow.</span></span></li>
             <li class="task task--done" data-text="brands page"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Brands page</span></li>
             <li class="task task--done" data-text="competitors page skeleton"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Competitors page skeleton</span></li>
             <li class="task task--not-started" data-text="onboarding flow"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Onboarding flow</span></li>
@@ -479,14 +615,14 @@ footer code { font-family: var(--font-mono); }
             <span class="phase__meta">
               <span class="phase__track">AI Visibility</span>
               <span>·</span>
-              <span>17/23 tasks</span>
+              <span>16/23 tasks</span>
             </span>
           </span>
           <span class="phase__aside">
             <span class="pill pill--in-progress">In progress</span>
-            <span class="bar" role="img" aria-label="17 of 23 tasks done">
-              <span class="bar__done" style="width:73.91%"></span>
-              <span class="bar__partial" style="width:8.70%"></span>
+            <span class="bar" role="img" aria-label="16 of 23 tasks done">
+              <span class="bar__done" style="width:69.57%"></span>
+              <span class="bar__partial" style="width:13.04%"></span>
             </span>
           </span>
         </summary>
@@ -508,7 +644,7 @@ footer code { font-family: var(--font-mono); }
             <li class="task task--done" data-text="prompt search"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt search</span></li>
             <li class="task task--done" data-text="prompt filters"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt filters</span></li>
             <li class="task task--partial" data-text="prompt quota service interface"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt quota service interface<span class="task__note">Rate limits enforce a ceiling; plan-based quotas arrive with billing (Phase 17).</span></span></li>
-            <li class="task task--done" data-text="active/suggested/inactive ui"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Active/Suggested/Inactive UI<span class="task__note">Active prompts list with status; Suggested/Inactive tabs are Phase 8.</span></span></li>
+            <li class="task task--partial" data-text="active/suggested/inactive ui"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Active/Suggested/Inactive UI<span class="task__note">2026-09-10 source reconciliation: current page lists prompts/statuses; Suggested/Inactive tab flow is not implemented. Previous done label contradicted its own note. M2 adds the bounded suggestions slice.</span></span></li>
             <li class="task task--not-started" data-text="expandable topic groups"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Expandable topic groups</span></li>
             <li class="task task--done" data-text="prompt detail route"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt detail route</span></li>
             <li class="task task--done" data-text="duplicate exact detection"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Duplicate exact detection</span></li>
@@ -591,15 +727,15 @@ footer code { font-family: var(--font-mono); }
           <p class="phase__goal">Turn raw AI answers into structured, evidence-backed data: mentions, competitors, rank, sentiment, and citations.</p>
           <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-4">Phase 4</a></p>
           <ul class="tasks">
-            <li class="task task--done" data-text="brand mention extraction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Brand mention extraction</span></li>
+            <li class="task task--done" data-text="brand mention extraction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Brand mention extraction<span class="task__note">Hardened against real-world answer formatting: a possessive (&quot;Notion's&quot;) counted as zero mentions until the token boundary was taught to accept a trailing 's. Still validated only against hand-written answer text — no live provider response has been analysed. Validated against real gpt-5 output in the 2026-09-04 live sweep (18 prompts); detection held, including true-absence cases where a brand was genuinely not named.</span></span></li>
             <li class="task task--done" data-text="alias matching"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Alias matching</span></li>
             <li class="task task--done" data-text="mention evidence spans"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Mention evidence spans</span></li>
             <li class="task task--partial" data-text="competitor extraction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Competitor extraction<span class="task__note">Known competitors are matched by alias; discovery of unknown competitors is Phase 7.</span></span></li>
             <li class="task task--done" data-text="competitor normalization"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Competitor normalization</span></li>
-            <li class="task task--done" data-text="position/rank extraction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Position/rank extraction</span></li>
-            <li class="task task--done" data-text="sentiment classifier"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Sentiment classifier</span></li>
+            <li class="task task--done" data-text="position/rank extraction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Position/rank extraction<span class="task__note">Hardened against real-world answer formatting: ordinals inside markdown headings (&quot;### 1. Acme&quot;) were not read as an explicit list, silently demoting a stated ranking to first-appearance order at 0.4 confidence. Validated in the 2026-09-04 live sweep: gpt-5 emitted &quot;1. ## Asana&quot;, putting the ordinal before the heading hashes, and ranks resolved correctly.</span></span></li>
+            <li class="task task--done" data-text="sentiment classifier"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Sentiment classifier<span class="task__note">Hardened against real-world answer formatting: a comparison sentence (&quot;Acme is powerful but Zenith is expensive&quot;) gave both brands both adjectives and labelled each mixed. The window now cuts at a rival brand and at a contrast word, but only when a rival lies beyond it — &quot;Acme is powerful but expensive&quot; must stay one verdict. The 2026-09-04 live sweep found a further defect: sentiment anchored on the FIRST mention, which in a real comparison answer is the opening name-drop listing every brand at once, so all brands returned unknown. The anchor is now the occurrence with the most surviving clause after clamping.</span></span></li>
             <li class="task task--done" data-text="sentiment evidence"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Sentiment evidence</span></li>
-            <li class="task task--done" data-text="citation extraction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Citation extraction</span></li>
+            <li class="task task--done" data-text="citation extraction"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Citation extraction<span class="task__note">Hardened against real-world answer formatting: a markdown link whose URL contains parentheses (every disambiguated Wikipedia title) was truncated at the first &quot;)&quot;, producing a dead link that became its own source_domains row. Validated in the 2026-09-04 live sweep: real url_citation annotations parse cleanly and the utm_source=openai that OpenAI appends to every cited link is stripped by normalization, while meaningful params survive.</span></span></li>
             <li class="task task--done" data-text="url normalization"><span class="task__marker" aria-hidden="true"></span><span class="task__title">URL normalization</span></li>
             <li class="task task--done" data-text="sourcedomain entity"><span class="task__marker" aria-hidden="true"></span><span class="task__title">SourceDomain entity</span></li>
             <li class="task task--done" data-text="domain classification"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Domain classification</span></li>
@@ -870,14 +1006,14 @@ footer code { font-family: var(--font-mono); }
             <span class="phase__meta">
               <span class="phase__track">Execution</span>
               <span>·</span>
-              <span>19/25 tasks</span>
+              <span>18/25 tasks</span>
             </span>
           </span>
           <span class="phase__aside">
             <span class="pill pill--in-progress">In progress</span>
-            <span class="bar" role="img" aria-label="19 of 25 tasks done">
-              <span class="bar__done" style="width:76.00%"></span>
-              <span class="bar__partial" style="width:8.00%"></span>
+            <span class="bar" role="img" aria-label="18 of 25 tasks done">
+              <span class="bar__done" style="width:72.00%"></span>
+              <span class="bar__partial" style="width:12.00%"></span>
             </span>
           </span>
         </summary>
@@ -895,7 +1031,7 @@ footer code { font-family: var(--font-mono); }
             <li class="task task--partial" data-text="agent integration rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Agent integration rules<span class="task__note">Covered by the OpenAPI and MCP checks; no dedicated integration rules.</span></span></li>
             <li class="task task--partial" data-text="agent auth rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Agent auth rules<span class="task__note">Covered by the OAuth-metadata probe; no dedicated auth rules.</span></span></li>
             <li class="task task--not-started" data-text="payment rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Payment rules</span></li>
-            <li class="task task--done" data-text="recommendation evidence"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Recommendation evidence</span></li>
+            <li class="task task--partial" data-text="recommendation evidence"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Recommendation evidence<span class="task__note">2026-09-10 source reconciliation: evidence refs and counts are stored, but card lacks direct evidence links and GEO generator uses hostname as citation ID. M7 must make evidence resolvable.</span></span></li>
             <li class="task task--done" data-text="priority calculation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Priority calculation</span></li>
             <li class="task task--done" data-text="confidence"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Confidence</span></li>
             <li class="task task--done" data-text="effort estimate"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Effort estimate</span></li>
@@ -1421,71 +1557,55 @@ footer code { font-family: var(--font-mono); }
   <div class="wrap">
     <div class="section__head">
       <h2 class="section__title">Release ladder</h2>
-      <p class="section__note">Which phases have to be finished before each release can ship.</p>
+      <p class="section__note">Current release outcomes and source-phase references. Only selected work packages are required; whole-phase completion is not a release gate. See blueprint section 0 for scope and acceptance.</p>
     </div>
     <div class="releases">
       <article class="release">
         <span class="release__letter">A</span>
         <div>
-          <h3 class="release__name">Internal Alpha</h3>
-          <p class="release__summary">Auth, workspace, brand, prompt CRUD, one provider, raw answer storage, and the analysis pipeline. No customer access.</p>
-          <p class="release__phases"><a href="#phase-1">P1</a> <a href="#phase-2">P2</a> <a href="#phase-3">P3</a> <a href="#phase-4">P4</a> <a href="#phase-5">P5</a></p>
+          <h3 class="release__name">MVP — First Tester: Measure + Explain</h3>
+          <p class="release__summary">Selected M0–M8 slices only: confirmed business, proposed prompts, OpenAI live provenance, valid metrics, answer/citation evidence, losses and actionable recommendations. Existing readiness optional. All first-tester gates must pass; no whole-phase completion requirement.</p>
+          <p class="release__phases"><a href="#phase-0">P0</a> <a href="#phase-1">P1</a> <a href="#phase-2">P2</a> <a href="#phase-3">P3</a> <a href="#phase-4">P4</a> <a href="#phase-5">P5</a> <a href="#phase-6">P6</a> <a href="#phase-7">P7</a> <a href="#phase-8">P8</a> <a href="#phase-11">P11</a></p>
         </div>
       </article>
       <article class="release">
         <span class="release__letter">B</span>
         <div>
-          <h3 class="release__name">GEO Private Beta</h3>
-          <p class="release__summary">Overview, Prompts, Chats, Sources, competitor analysis, and basic suggested prompts. First paid-value candidate.</p>
-          <p class="release__phases"><a href="#phase-6">P6</a> <a href="#phase-7">P7</a> <a href="#phase-8">P8</a></p>
+          <h3 class="release__name">V0.2 — Diagnose + Optimize</h3>
+          <p class="release__summary">B0 and D1–D5: brief, content/Bot View, source graph, intent/demand opportunity and GSC gap, comparable history, meaningful alerts, provider validation and impact ranking. Deliver incrementally after tester feedback.</p>
+          <p class="release__phases"><a href="#phase-6">P6</a> <a href="#phase-7">P7</a> <a href="#phase-8">P8</a> <a href="#phase-9">P9</a> <a href="#phase-11">P11</a> <a href="#phase-13">P13</a> <a href="#phase-16">P16</a> <a href="#phase-18">P18</a></p>
         </div>
       </article>
       <article class="release">
         <span class="release__letter">C</span>
         <div>
-          <h3 class="release__name">GEO Optimization Beta</h3>
-          <p class="release__summary">Adds on-page, off-page, and technical GEO recommendations plus content drafts.</p>
-          <p class="release__phases"><a href="#phase-11">P11</a> <a href="#phase-13">P13</a></p>
+          <h3 class="release__name">V0.3 — Closed Optimization Loop</h3>
+          <p class="release__summary">L1–L3: experiments and before/after evidence, approved drafts/CMS, grounded Analyst, public API/MCP, exports and opt-in reports/workflows. Versioned observations before comparisons.</p>
+          <p class="release__phases"><a href="#phase-11">P11</a> <a href="#phase-13">P13</a> <a href="#phase-14">P14</a> <a href="#phase-15">P15</a> <a href="#phase-16">P16</a></p>
         </div>
       </article>
       <article class="release">
         <span class="release__letter">D</span>
         <div>
-          <h3 class="release__name">Agent Readiness Beta</h3>
-          <p class="release__summary">Adds domain scan, readiness score, checks, history, targeted re-check, and the Essentials view.</p>
-          <p class="release__phases"><a href="#phase-9">P9</a> <a href="#phase-10">P10</a></p>
+          <h3 class="release__name">V1 — Business Impact</h3>
+          <p class="release__summary">V1-I: source-reconciled AI referral, conversion/revenue and assisted attribution, traffic classification and ROI. Missing joins stay unknown; no inferred private AI prompts.</p>
+          <p class="release__phases"><a href="#phase-6">P6</a> <a href="#phase-16">P16</a> <a href="#phase-18">P18</a></p>
         </div>
       </article>
       <article class="release">
         <span class="release__letter">E</span>
         <div>
-          <h3 class="release__name">Agent Journey Beta</h3>
-          <p class="release__summary">Adds curated real agent journeys, journey failure analysis, and journey-derived recommendations.</p>
-          <p class="release__phases"><a href="#phase-12">P12</a></p>
+          <h3 class="release__name">V2 — Agent Readiness Expansion</h3>
+          <p class="release__summary">R1: expand the preserved static/HTTP foundation into conformance and protocol checks plus real-agent task execution. Applicability and methodology versions stay separate from vendor scoring.</p>
+          <p class="release__phases"><a href="#phase-9">P9</a> <a href="#phase-10">P10</a> <a href="#phase-12">P12</a> <a href="#phase-15">P15</a></p>
         </div>
       </article>
       <article class="release">
         <span class="release__letter">F</span>
         <div>
-          <h3 class="release__name">Automation / Developer Release</h3>
-          <p class="release__summary">Adds workflows, MCP, CLI, CI gates, and agent skills.</p>
-          <p class="release__phases"><a href="#phase-14">P14</a> <a href="#phase-15">P15</a></p>
-        </div>
-      </article>
-      <article class="release">
-        <span class="release__letter">G</span>
-        <div>
-          <h3 class="release__name">Enterprise</h3>
-          <p class="release__summary">Adds SSO, advanced permissions, reporting, larger quotas, integrations, and audit/security controls.</p>
-          <p class="release__phases"><a href="#phase-16">P16</a> <a href="#phase-17">P17</a> <a href="#phase-18">P18</a></p>
-        </div>
-      </article>
-      <article class="release">
-        <span class="release__letter">H</span>
-        <div>
-          <h3 class="release__name">Network Layer</h3>
-          <p class="release__summary">Adds gradually: public badge, public comparison, agent feedback, directory, and attestations.</p>
-          <p class="release__phases"><a href="#phase-19">P19</a> <a href="#phase-20">P20</a> <a href="#phase-21">P21</a></p>
+          <h3 class="release__name">V2+ / V3 — Agentic Commerce</h3>
+          <p class="release__summary">C1 research: opt-in commerce readiness from discovery through price/stock/cart/checkout/payment/status/returns. Authorized sandbox testing only; no commerce engine build.</p>
+          <p class="release__phases"><a href="#phase-10">P10</a> <a href="#phase-12">P12</a> <a href="#phase-18">P18</a></p>
         </div>
       </article>
     </div>
@@ -1497,11 +1617,16 @@ footer code { font-family: var(--font-mono); }
     <div class="section__head">
       <h2 class="section__title">Acceptance criteria</h2>
       <p class="section__note">
-        The nine checklists the finished product is measured against. These are the definition of
-        done for the whole system, not for any single phase.
+        M8 is the first-tester release gate. The preserved detailed checklists apply to their
+        respective features when delivered; readiness and journey expansion do not gate today's GEO MVP.
       </p>
     </div>
     <div class="accept">
+      <article class="accept__card">
+        <span class="accept__id">M8</span>
+        <h3 class="accept__title">MVP — First Tester Ready When</h3>
+        <ol><li>Allowed tester signs in to the intended environment and confirms domain/business/competitors.</li><li>Relevant proposed prompts can be reviewed, accepted/rejected, grouped and prioritized.</li><li>Supported live-provider observations include provenance; fixtures and failures cannot masquerade as measurements.</li><li>Visibility, competitor losses and citations match the exact answer evidence behind them.</li><li>A supported finding produces an actionable, evidence-linked next step; insufficient evidence remains explicit.</li><li>Normal workflow needs no developer intervention; empty/pending/error/mobile/keyboard paths and tenant isolation are verified.</li><li>Record deployed revision, provider/model, sample counts, errors, time to first useful result and tester feedback. Full gate: blueprint section 0.4.</li></ol>
+      </article>
       <article class="accept__card">
         <span class="accept__id">30.1</span>
         <h3 class="accept__title">Core GEO End-to-End</h3>
@@ -1509,12 +1634,12 @@ footer code { font-family: var(--font-mono); }
       </article>
       <article class="accept__card">
         <span class="accept__id">30.2</span>
-        <h3 class="accept__title">Readiness Scan End-to-End</h3>
+        <h3 class="accept__title">Readiness Scan End-to-End — optional existing capability / V2 expansion</h3>
         <ol><li>User selects a brand domain.</li><li>User starts scan.</li><li>API returns job immediately.</li><li>Target kind is detected.</li><li>Applicable methodology version is attached.</li><li>Applicable checks run.</li><li>N/A checks are excluded correctly.</li><li>Evidence is persisted.</li><li>Layer scores calculate.</li><li>Overall score calculates.</li><li>Grade calculates.</li><li>Failed checks have recommendations.</li><li>Scan UI updates through progress events.</li><li>User can reopen the completed scan.</li><li>User can rerun selected checks.</li><li>Targeted re-check returns fresh evidence.</li><li>Historical full scan remains immutable.</li><li>Methodology version is visible.</li><li>Score differences can be attributed to scan/site/methodology changes.</li><li>SSRF protections prevent private-network scanning.</li></ol>
       </article>
       <article class="accept__card">
         <span class="accept__id">30.3</span>
-        <h3 class="accept__title">Agent Journey End-to-End</h3>
+        <h3 class="accept__title">Agent Journey End-to-End — optional existing capability / V2 expansion</h3>
         <ol><li>User selects a curated task.</li><li>Journey is queued.</li><li>Agent runtime remains scoped to allowed target/action set.</li><li>Pages/tools/actions are recorded.</li><li>Operational trace is persisted.</li><li>Journey can time out safely.</li><li>Journey identifies success/failure.</li><li>Failure receives taxonomy.</li><li>Friction points are generated.</li><li>Journey UI displays timeline.</li><li>Journey links to recommendations.</li><li>No hidden chain-of-thought is exposed/stored as a product dependency.</li></ol>
       </article>
       <article class="accept__card">
@@ -1558,7 +1683,7 @@ footer code { font-family: var(--font-mono); }
       Regenerate with <code>npm run roadmap</code> after any status change. Derived from the product
       blueprint at <code>docs/product/blueprint.md</code>.
     </p>
-    <p>Last generated 2026-08-28.</p>
+    <p>Last generated 2026-09-11.</p>
   </div>
 </footer>
 
@@ -1640,3 +1765,4 @@ footer code { font-family: var(--font-mono); }
   }
 })();
 </script>
+</html>
