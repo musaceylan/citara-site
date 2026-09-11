@@ -267,11 +267,11 @@ footer code { font-family: var(--font-mono); }
       <h2 class="section__title">Current release status</h2>
       <p class="section__note">Updated 2026-09-11 · deployed revision <code>72d1f43</code></p>
     </div>
-    <p>The tester application is live in English, Turkish, German, French, Spanish and Arabic. Implementation and release acceptance are tracked separately.</p>
+    <p>Six-language tester application deployed. Live OpenAI collection and the full desktop/mobile workflow are verified; independent tester feedback remains open.</p>
     <p><a href="https://citara.ceylan.world">Open the tester application</a></p>
     <div class="release-progress">
-      <article><h3>Completed and verified</h3><ul><li>Hetzner HTTPS deployment, database, cache and worker are healthy.</li><li>Tester confirmed email sign-in; public redirects and token replay protection verified.</li><li>Six-language UI, Arabic RTL and downloadable how-to guides deployed.</li><li>901 unit/integration tests passed; public language switching and mobile session preservation passed.</li></ul></article>
-      <article><h3>Current work</h3><ul><li>M0/M3: verify one queued live-provider observation with traceable evidence.</li><li>M8: run the full business → prompts → results → evidence → action workflow against a reproducible runtime.</li></ul></article>
+      <article><h3>Completed and verified</h3><ul><li>Hetzner HTTPS deployment, database, cache and worker are healthy.</li><li>Tester confirmed email sign-in; public redirects and token replay protection verified.</li><li>Six-language UI, Arabic RTL and downloadable how-to guides deployed.</li><li>901 unit/integration tests passed; public language switching and mobile session preservation passed.</li><li>Live OpenAI run completed in 82 seconds: actual model/provenance stored, 10 citations and one evidence-linked recommendation verified. Repeat collection created no duplicate.</li><li>All 10 desktop/mobile browser tests passed against production build 72d1f43 in 24.8 seconds, including six languages and Arabic RTL.</li><li>Production-style test sign-in uses an isolated local inbox; dedicated test database/cache guards and cleanup verified. Ten harness unit tests passed.</li></ul></article>
+      <article><h3>Current work</h3><ul></ul></article>
       <article><h3>Still pending</h3><ul><li>Independent tester walkthrough and feedback.</li><li>B0 editable content brief follows the MVP gate; later roadmap packages remain unchanged.</li></ul></article>
     </div>
   </div>
@@ -286,40 +286,40 @@ footer code { font-family: var(--font-mono); }
     <div class="package-list">
       <details open>
         <summary><strong>M0 · Tester environment and access</strong> — mvp</summary>
-        <p>Implementation: <strong>PARTIAL</strong> · Acceptance: <strong>PARTIAL</strong></p>
-        <p>Deployed at citara.ceylan.world. Tester confirmed email sign-in; secure sessions, Postgres/Redis and worker verified. Open email signup is intentional. Queued live-provider completion still requires evidence.</p>
+        <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
+        <p>HTTPS deployment, email sign-in, secure sessions, database/cache and worker verified. On 2026-09-11 one normal queued OpenAI run completed in 82 seconds; open email signup is intentional. Independent tester walkthrough remains pending.</p>
       </details><details>
         <summary><strong>M1 · Business and competitors</strong> — mvp</summary>
         <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
-        <p>Guided bounded extraction/manual fallback, editable confirmed profile, primary brand/aliases and competitor entry implemented. Relevant automated module checks passed on 2026-09-11; complete browser/live acceptance remains pending.</p>
+        <p>Guided bounded extraction/manual fallback, editable confirmed profile, primary brand/aliases and competitor entry implemented. Relevant automated module checks passed on 2026-09-11; the complete desktop/mobile browser workflow and a separate live production collection passed on 2026-09-11. Independent tester acceptance remains pending.</p>
       </details><details>
         <summary><strong>M2 · Prompt suggestions and intent</strong> — mvp</summary>
         <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
-        <p>Deterministic relevant intent prompts with atomic accept/reject, provenance, English language and stale proposal handling implemented. Relevant automated module checks passed on 2026-09-11; complete browser/live acceptance remains pending.</p>
+        <p>Deterministic relevant intent prompts with atomic accept/reject, provenance, English language and stale proposal handling implemented. Relevant automated module checks passed on 2026-09-11; the complete desktop/mobile browser workflow and a separate live production collection passed on 2026-09-11. Independent tester acceptance remains pending.</p>
       </details><details>
         <summary><strong>M3 · Live collection and provenance</strong> — mvp</summary>
         <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
-        <p>Live provenance and fixture exclusion pass controlled integration checks. Configured OpenAI credentials were validated, but an actual queued collection has not yet been recorded.</p>
+        <p>Live production collection verified on 2026-09-11: gpt-5-2025-08-07, collector-2, analysis-1, actual answer provenance and 10 citations retained. Repeating Collect now created zero new runs. Controlled fixtures remain confined to the isolated test database.</p>
       </details><details>
         <summary><strong>M4 · Trustworthy metrics</strong> — mvp</summary>
         <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
-        <p>Consistent valid-live cohorts, failed/pending states, rank sample sizes and raw-derived snapshots implemented; controlled observation oracle added. Relevant automated module checks passed on 2026-09-11; complete browser/live acceptance remains pending.</p>
+        <p>Consistent valid-live cohorts, failed/pending states, rank sample sizes and raw-derived snapshots implemented; controlled observation oracle added. Relevant automated module checks passed on 2026-09-11; the complete desktop/mobile browser workflow and a separate live production collection passed on 2026-09-11. Independent tester acceptance remains pending.</p>
       </details><details>
         <summary><strong>M5 · Answer evidence</strong> — mvp</summary>
         <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
-        <p>Stable scoped answer replay exposes exact text, detections, citation URLs and provider/version metadata. Relevant automated module checks passed on 2026-09-11; complete browser/live acceptance remains pending.</p>
+        <p>Stable scoped answer replay exposes exact text, detections, citation URLs and provider/version metadata. Relevant automated module checks passed on 2026-09-11; the complete desktop/mobile browser workflow and a separate live production collection passed on 2026-09-11. Independent tester acceptance remains pending.</p>
       </details><details>
         <summary><strong>M6 · Competitive opportunities</strong> — mvp</summary>
         <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
-        <p>Dedicated competitor comparison, real prompt losses and explained qualitative opportunity implemented. Relevant automated module checks passed on 2026-09-11; complete browser/live acceptance remains pending.</p>
+        <p>Dedicated competitor comparison, real prompt losses and explained qualitative opportunity implemented. Relevant automated module checks passed on 2026-09-11; the complete desktop/mobile browser workflow and a separate live production collection passed on 2026-09-11. Independent tester acceptance remains pending.</p>
       </details><details>
         <summary><strong>M7 · Evidence-linked recommendations</strong> — mvp</summary>
         <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
-        <p>Top three evidence-linked competitive/citation actions, refreshable claims and existing lifecycle implemented. Relevant automated module checks passed on 2026-09-11; complete browser/live acceptance remains pending.</p>
+        <p>Top three evidence-linked competitive/citation actions, refreshable claims and existing lifecycle implemented. Relevant automated module checks passed on 2026-09-11; the complete desktop/mobile browser workflow and a separate live production collection passed on 2026-09-11. Independent tester acceptance remains pending.</p>
       </details><details open>
         <summary><strong>M8 · Full workflow and release acceptance</strong> — mvp</summary>
         <p>Implementation: <strong>PARTIAL</strong> · Acceptance: <strong>PARTIAL</strong></p>
-        <p>Production sign-in and six-language browser checks passed; 901 unit/integration tests passed. Full deterministic walkthrough hit Jetson cold-build timeouts. Current work: reproducible workflow verification and live collection; tester sign-off remains pending.</p>
+        <p>Engineering verification passed on 2026-09-11: all 10 desktop/mobile browser tests against production artifact 72d1f43 (24.8 seconds); separate live queued OpenAI run, answer replay and evidence-linked recommendation verified through the deployed UI. QA records cleaned or archived and sessions revoked. Unaided tester and keyboard walkthrough remain pending; acceptance stays PARTIAL.</p>
       </details><details>
         <summary><strong>A0 · Optional static readiness</strong> — mvp</summary>
         <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
