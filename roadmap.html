@@ -255,8 +255,8 @@ footer code { font-family: var(--font-mono); }
     <div class="summary">
       <div class="summary__cell"><span class="summary__value">23</span><span class="summary__label">Phases</span></div>
       <div class="summary__cell"><span class="summary__value">459</span><span class="summary__label">Tasks</span></div>
-      <div class="summary__cell"><span class="summary__value">198</span><span class="summary__label">Done</span></div>
-      <div class="summary__cell"><span class="summary__value">26</span><span class="summary__label">In progress</span></div>
+      <div class="summary__cell"><span class="summary__value">211</span><span class="summary__label">Done</span></div>
+      <div class="summary__cell"><span class="summary__value">25</span><span class="summary__label">In progress</span></div>
     </div>
   </div>
 </header>
@@ -265,14 +265,14 @@ footer code { font-family: var(--font-mono); }
   <div class="wrap">
     <div class="section__head">
       <h2 class="section__title">Current release status</h2>
-      <p class="section__note">Updated 2026-09-11 · deployed revision <code>72d1f43</code></p>
+      <p class="section__note">Updated 2026-09-12 · deployed revision <code>72d1f43</code></p>
     </div>
-    <p>Six-language tester application deployed. Live OpenAI collection and the full desktop/mobile workflow are verified; independent tester feedback remains open.</p>
+    <p>Measure + Explain is deployed and engineering checks passed. Full roadmap reconciled with the supplied strategy; M2 candidate editing and independent M8 acceptance remain open.</p>
     <p><a href="https://citara.ceylan.world">Open the tester application</a></p>
     <div class="release-progress">
-      <article><h3>Completed and verified</h3><ul><li>Hetzner HTTPS deployment, database, cache and worker are healthy.</li><li>Tester confirmed email sign-in; public redirects and token replay protection verified.</li><li>Six-language UI, Arabic RTL and downloadable how-to guides deployed.</li><li>901 unit/integration tests passed; public language switching and mobile session preservation passed.</li><li>Live OpenAI run completed in 82 seconds: actual model/provenance stored, 10 citations and one evidence-linked recommendation verified. Repeat collection created no duplicate.</li><li>All 10 desktop/mobile browser tests passed against production build 72d1f43 in 24.8 seconds, including six languages and Arabic RTL.</li><li>Production-style test sign-in uses an isolated local inbox; dedicated test database/cache guards and cleanup verified. Ten harness unit tests passed.</li></ul></article>
+      <article><h3>Completed and verified</h3><ul><li>Hetzner HTTPS deployment, database, cache and worker are healthy.</li><li>Tester confirmed email sign-in; public redirects and token replay protection verified.</li><li>Six-language UI, Arabic RTL and downloadable how-to guides deployed.</li><li>901 unit/integration tests passed; public language switching and mobile session preservation passed.</li><li>Live OpenAI run completed in 82 seconds: actual model/provenance stored, 10 citations and one evidence-linked recommendation verified. Repeat collection created no duplicate.</li><li>All 10 desktop/mobile browser tests passed against production build 72d1f43 in 24.8 seconds, including six languages and Arabic RTL.</li><li>Production-style test sign-in uses an isolated local inbox; dedicated test database/cache guards and cleanup verified. Ten harness unit tests passed.</li><li>September 12: full strategy reconciliation, official-source revalidation and corrected legacy task inventory; no product features added by this documentation change.</li></ul></article>
       <article><h3>Current work</h3><ul></ul></article>
-      <article><h3>Still pending</h3><ul><li>Independent tester walkthrough and feedback.</li><li>B0 editable content brief follows the MVP gate; later roadmap packages remain unchanged.</li></ul></article>
+      <article><h3>Still pending</h3><ul><li>M2: edit a pending suggested prompt before acceptance, retaining provenance, dedupe and accepted-prompt history.</li><li>M8: independent tester and keyboard walkthrough; record feedback after closing the M2 gap.</li><li>B0: editable content brief after the MVP gate. Diagnose/optimize V0.2; closed loop V0.3; impact V1; readiness V2; applicable commerce V2+/V3.</li></ul></article>
     </div>
   </div>
 </section>
@@ -294,8 +294,8 @@ footer code { font-family: var(--font-mono); }
         <p>Guided bounded extraction/manual fallback, editable confirmed profile, primary brand/aliases and competitor entry implemented. Relevant automated module checks passed on 2026-09-11; the complete desktop/mobile browser workflow and a separate live production collection passed on 2026-09-11. Independent tester acceptance remains pending.</p>
       </details><details>
         <summary><strong>M2 · Prompt suggestions and intent</strong> — mvp</summary>
-        <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
-        <p>Deterministic relevant intent prompts with atomic accept/reject, provenance, English language and stale proposal handling implemented. Relevant automated module checks passed on 2026-09-11; the complete desktop/mobile browser workflow and a separate live production collection passed on 2026-09-11. Independent tester acceptance remains pending.</p>
+        <p>Implementation: <strong>PARTIAL</strong> · Acceptance: <strong>PARTIAL</strong></p>
+        <p>Templates, intent/relevance, provenance, accept/reject, dedupe and rejection memory implemented and tested. Pending candidate text cannot yet be edited as specified: remaining M2 slice must preserve immutable accepted prompts and history. UI translation does not translate English generated prompts.</p>
       </details><details>
         <summary><strong>M3 · Live collection and provenance</strong> — mvp</summary>
         <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>PARTIAL</strong></p>
@@ -319,7 +319,7 @@ footer code { font-family: var(--font-mono); }
       </details><details open>
         <summary><strong>M8 · Full workflow and release acceptance</strong> — mvp</summary>
         <p>Implementation: <strong>PARTIAL</strong> · Acceptance: <strong>PARTIAL</strong></p>
-        <p>Engineering verification passed on 2026-09-11: all 10 desktop/mobile browser tests against production artifact 72d1f43 (24.8 seconds); separate live queued OpenAI run, answer replay and evidence-linked recommendation verified through the deployed UI. QA records cleaned or archived and sessions revoked. Unaided tester and keyboard walkthrough remain pending; acceptance stays PARTIAL.</p>
+        <p>Engineering verification passed on 2026-09-11: all 10 desktop/mobile browser tests against production artifact 72d1f43 (24.8 seconds); separate live queued OpenAI run, answer replay and evidence-linked recommendation verified through the deployed UI. QA records cleaned or archived and sessions revoked. Unaided tester and keyboard walkthrough remain pending; acceptance stays PARTIAL. September 12 reconciliation identified unmet M2 candidate-editing acceptance; existing passing tests do not cover that missing behavior.</p>
       </details><details>
         <summary><strong>A0 · Optional static readiness</strong> — mvp</summary>
         <p>Implementation: <strong>IMPLEMENTED</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
@@ -327,7 +327,7 @@ footer code { font-family: var(--font-mono); }
       </details><details>
         <summary><strong>B0 · Editable content brief</strong> — v0-2</summary>
         <p>Implementation: <strong>PLANNED</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
-        <p>Acceptance and scope are canonical in the Markdown package; no implementation completed by this update.</p>
+        <p>First post-MVP implementation: editable/copyable brief linked to a supported recommendation. Content schema only; no working brief service/UI. Entry: close M2/M8 and use tester feedback. Publishing remains L2.</p>
       </details><details>
         <summary><strong>D1 · Content audit and Bot View</strong> — v0-2</summary>
         <p>Implementation: <strong>PARTIAL</strong> · Acceptance: <strong>NOT VERIFIED</strong></p>
@@ -463,7 +463,7 @@ footer code { font-family: var(--font-mono); }
     </div>
 
     <div class="phases">
-      <details class="phase" id="phase-0" data-track="foundation" data-status="in-progress" open>
+      <details class="phase" id="phase-0" data-track="foundation" data-status="partial" open>
         <summary class="phase__summary">
           <span class="phase__num">00</span>
           <span class="phase__main">
@@ -471,14 +471,14 @@ footer code { font-family: var(--font-mono); }
             <span class="phase__meta">
               <span class="phase__track">Foundation</span>
               <span>·</span>
-              <span>19/22 tasks</span>
+              <span>20/22 tasks</span>
             </span>
           </span>
           <span class="phase__aside">
-            <span class="pill pill--in-progress">In progress</span>
-            <span class="bar" role="img" aria-label="19 of 22 tasks done">
-              <span class="bar__done" style="width:86.36%"></span>
-              <span class="bar__partial" style="width:13.64%"></span>
+            <span class="pill pill--partial">In progress</span>
+            <span class="bar" role="img" aria-label="20 of 22 tasks done">
+              <span class="bar__done" style="width:90.91%"></span>
+              <span class="bar__partial" style="width:9.09%"></span>
             </span>
           </span>
         </summary>
@@ -494,8 +494,8 @@ footer code { font-family: var(--font-mono); }
             <li class="task task--done" data-text="create /docs/architecture/adr-0004-provider-adapters.md"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Create /docs/architecture/ADR-0004-provider-adapters.md</span></li>
             <li class="task task--done" data-text="create /docs/architecture/adr-0005-readiness-methodology-versioning.md"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Create /docs/architecture/ADR-0005-readiness-methodology-versioning.md</span></li>
             <li class="task task--done" data-text="define core terminology (workspace, brand, prompt, prompt run, answer, source, scan, check, journey, recommendation)"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define core terminology (workspace, brand, prompt, prompt run, answer, source, scan, check, journey, recommendation)</span></li>
-            <li class="task task--partial" data-text="define supported mvp ai platform"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define supported MVP AI platform<span class="task__note">Adapter contract + fixture provider decided (ADR-0005); the launch platform and its commercial agreement are still open.</span></span></li>
-            <li class="task task--partial" data-text="define legal/compliance collection method for that platform"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define legal/compliance collection method for that platform<span class="task__note">Policy fixed: official paid APIs only, no scraping or auth bypass. Specific provider terms pending platform choice.</span></span></li>
+            <li class="task task--done" data-text="define supported mvp ai platform"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define supported MVP AI platform<span class="task__note">OpenAI Responses API selected and deployed; registry has one live adapter. September 11 queued live run verified. Other providers remain future work.</span></span></li>
+            <li class="task task--partial" data-text="define legal/compliance collection method for that platform"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define legal/compliance collection method for that platform<span class="task__note">Official OpenAI API selected; no browser scraping/auth bypass. Provider terms, retention notice and commercial compliance review are not established by a successful API call.</span></span></li>
             <li class="task task--done" data-text="define initial plan model without implementing billing"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define initial plan model without implementing billing</span></li>
             <li class="task task--done" data-text="define data-retention policy"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define data-retention policy</span></li>
             <li class="task task--done" data-text="define raw-evidence storage policy"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Define raw-evidence storage policy</span></li>
@@ -512,7 +512,7 @@ footer code { font-family: var(--font-mono); }
           <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>Architecture decisions documented</li><li>No unresolved core entity naming</li><li>Test harness boots</li><li>Application runs locally</li><li>Database migrations work</li><li>Queue can execute a sample job</li></ul></div>
         </div>
       </details>
-      <details class="phase" id="phase-1" data-track="platform" data-status="in-progress" open>
+      <details class="phase" id="phase-1" data-track="platform" data-status="partial" open>
         <summary class="phase__summary">
           <span class="phase__num">01</span>
           <span class="phase__main">
@@ -524,7 +524,7 @@ footer code { font-family: var(--font-mono); }
             </span>
           </span>
           <span class="phase__aside">
-            <span class="pill pill--in-progress">In progress</span>
+            <span class="pill pill--partial">In progress</span>
             <span class="bar" role="img" aria-label="23 of 24 tasks done">
               <span class="bar__done" style="width:95.83%"></span>
               <span class="bar__partial" style="width:0.00%"></span>
@@ -563,7 +563,7 @@ footer code { font-family: var(--font-mono); }
           <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A user can authenticate, create a workspace, create a brand and cannot access another tenant's data</li><li>Cross-workspace access is attempted and rejected for every read/write API (security test)</li></ul></div>
         </div>
       </details>
-      <details class="phase" id="phase-2" data-track="foundation" data-status="in-progress" open>
+      <details class="phase" id="phase-2" data-track="foundation" data-status="partial" open>
         <summary class="phase__summary">
           <span class="phase__num">02</span>
           <span class="phase__main">
@@ -575,7 +575,7 @@ footer code { font-family: var(--font-mono); }
             </span>
           </span>
           <span class="phase__aside">
-            <span class="pill pill--in-progress">In progress</span>
+            <span class="pill pill--partial">In progress</span>
             <span class="bar" role="img" aria-label="13 of 17 tasks done">
               <span class="bar__done" style="width:76.47%"></span>
               <span class="bar__partial" style="width:17.65%"></span>
@@ -607,7 +607,7 @@ footer code { font-family: var(--font-mono); }
           <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A workspace can define brand + domain + aliases + market + language + platform and all are available through APIs</li></ul></div>
         </div>
       </details>
-      <details class="phase" id="phase-3" data-track="geo" data-status="in-progress" open>
+      <details class="phase" id="phase-3" data-track="geo" data-status="partial" open>
         <summary class="phase__summary">
           <span class="phase__num">03</span>
           <span class="phase__main">
@@ -615,14 +615,14 @@ footer code { font-family: var(--font-mono); }
             <span class="phase__meta">
               <span class="phase__track">AI Visibility</span>
               <span>·</span>
-              <span>16/23 tasks</span>
+              <span>18/23 tasks</span>
             </span>
           </span>
           <span class="phase__aside">
-            <span class="pill pill--in-progress">In progress</span>
-            <span class="bar" role="img" aria-label="16 of 23 tasks done">
-              <span class="bar__done" style="width:69.57%"></span>
-              <span class="bar__partial" style="width:13.04%"></span>
+            <span class="pill pill--partial">In progress</span>
+            <span class="bar" role="img" aria-label="18 of 23 tasks done">
+              <span class="bar__done" style="width:78.26%"></span>
+              <span class="bar__partial" style="width:8.70%"></span>
             </span>
           </span>
         </summary>
@@ -636,8 +636,8 @@ footer code { font-family: var(--font-mono); }
             <li class="task task--done" data-text="prompttag table"><span class="task__marker" aria-hidden="true"></span><span class="task__title">PromptTag table</span></li>
             <li class="task task--done" data-text="active state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Active state</span></li>
             <li class="task task--done" data-text="inactive state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Inactive state</span></li>
-            <li class="task task--partial" data-text="suggested state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Suggested state<span class="task__note">suggested_prompts table exists; no generation or acceptance flow (Phase 8).</span></span></li>
-            <li class="task task--not-started" data-text="rejected state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Rejected state</span></li>
+            <li class="task task--done" data-text="suggested state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Suggested state<span class="task__note">Pending suggested prompts are generated and reviewed through onboarding; atomic acceptance creates an active prompt. Candidate editing remains M2 work.</span></span></li>
+            <li class="task task--done" data-text="rejected state"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Rejected state<span class="task__note">Rejected suggestion state and same-context rejection memory implemented in prompt-suggestion-service.ts.</span></span></li>
             <li class="task task--done" data-text="prompt crud"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt CRUD</span></li>
             <li class="task task--done" data-text="topic crud"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Topic CRUD</span></li>
             <li class="task task--done" data-text="tag crud"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Tag CRUD</span></li>
@@ -657,7 +657,7 @@ footer code { font-family: var(--font-mono); }
           <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>Users can organize and activate prompts without any fake analytics</li></ul></div>
         </div>
       </details>
-      <details class="phase" id="phase-4" data-track="geo" data-status="in-progress" open>
+      <details class="phase" id="phase-4" data-track="geo" data-status="partial" open>
         <summary class="phase__summary">
           <span class="phase__num">04</span>
           <span class="phase__main">
@@ -669,7 +669,7 @@ footer code { font-family: var(--font-mono); }
             </span>
           </span>
           <span class="phase__aside">
-            <span class="pill pill--in-progress">In progress</span>
+            <span class="pill pill--partial">In progress</span>
             <span class="bar" role="img" aria-label="15 of 20 tasks done">
               <span class="bar__done" style="width:75.00%"></span>
               <span class="bar__partial" style="width:20.00%"></span>
@@ -704,7 +704,7 @@ footer code { font-family: var(--font-mono); }
           <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A real active prompt produces a persisted AI answer through the background worker pipeline</li><li>One provider error never invalidates the entire prompt batch (critical rule)</li></ul></div>
         </div>
       </details>
-      <details class="phase" id="phase-5" data-track="geo" data-status="in-progress" open>
+      <details class="phase" id="phase-5" data-track="geo" data-status="partial" open>
         <summary class="phase__summary">
           <span class="phase__num">05</span>
           <span class="phase__main">
@@ -716,7 +716,7 @@ footer code { font-family: var(--font-mono); }
             </span>
           </span>
           <span class="phase__aside">
-            <span class="pill pill--in-progress">In progress</span>
+            <span class="pill pill--partial">In progress</span>
             <span class="bar" role="img" aria-label="17 of 20 tasks done">
               <span class="bar__done" style="width:85.00%"></span>
               <span class="bar__partial" style="width:10.00%"></span>
@@ -751,7 +751,7 @@ footer code { font-family: var(--font-mono); }
           <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>Every successful answer can expose brands, positions, sentiment, citations, and source domains with evidence</li></ul></div>
         </div>
       </details>
-      <details class="phase" id="phase-6" data-track="geo" data-status="in-progress" open>
+      <details class="phase" id="phase-6" data-track="geo" data-status="partial" open>
         <summary class="phase__summary">
           <span class="phase__num">06</span>
           <span class="phase__main">
@@ -763,7 +763,7 @@ footer code { font-family: var(--font-mono); }
             </span>
           </span>
           <span class="phase__aside">
-            <span class="pill pill--in-progress">In progress</span>
+            <span class="pill pill--partial">In progress</span>
             <span class="bar" role="img" aria-label="20 of 24 tasks done">
               <span class="bar__done" style="width:83.33%"></span>
               <span class="bar__partial" style="width:12.50%"></span>
@@ -802,7 +802,7 @@ footer code { font-family: var(--font-mono); }
           <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>The full MVP flow works with real persisted data: signup -&gt; workspace -&gt; brand -&gt; prompt -&gt; provider run -&gt; answer -&gt; analysis -&gt; metrics -&gt; dashboard -&gt; prompt detail -&gt; chat evidence -&gt; source evidence</li><li>A limited private beta can begin here (commercial milestone)</li></ul></div>
         </div>
       </details>
-      <details class="phase" id="phase-7" data-track="geo" data-status="in-progress" open>
+      <details class="phase" id="phase-7" data-track="geo" data-status="partial" open>
         <summary class="phase__summary">
           <span class="phase__num">07</span>
           <span class="phase__main">
@@ -814,7 +814,7 @@ footer code { font-family: var(--font-mono); }
             </span>
           </span>
           <span class="phase__aside">
-            <span class="pill pill--in-progress">In progress</span>
+            <span class="pill pill--partial">In progress</span>
             <span class="bar" role="img" aria-label="12 of 15 tasks done">
               <span class="bar__done" style="width:80.00%"></span>
               <span class="bar__partial" style="width:0.00%"></span>
@@ -844,7 +844,7 @@ footer code { font-family: var(--font-mono); }
           <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A user can answer: for this prompt, who beats me and which sources appear to support that result?</li></ul></div>
         </div>
       </details>
-      <details class="phase" id="phase-8" data-track="geo" data-status="not-started">
+      <details class="phase" id="phase-8" data-track="geo" data-status="partial" open>
         <summary class="phase__summary">
           <span class="phase__num">08</span>
           <span class="phase__main">
@@ -852,14 +852,14 @@ footer code { font-family: var(--font-mono); }
             <span class="phase__meta">
               <span class="phase__track">AI Visibility</span>
               <span>·</span>
-              <span>0/19 tasks</span>
+              <span>9/19 tasks</span>
             </span>
           </span>
           <span class="phase__aside">
-            
-            <span class="bar" role="img" aria-label="0 of 19 tasks done">
-              <span class="bar__done" style="width:0.00%"></span>
-              <span class="bar__partial" style="width:0.00%"></span>
+            <span class="pill pill--partial">In progress</span>
+            <span class="bar" role="img" aria-label="9 of 19 tasks done">
+              <span class="bar__done" style="width:47.37%"></span>
+              <span class="bar__partial" style="width:5.26%"></span>
             </span>
           </span>
         </summary>
@@ -867,21 +867,21 @@ footer code { font-family: var(--font-mono); }
           <p class="phase__goal">Help users discover demand automatically instead of manually maintaining every prompt.</p>
           <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-7">Phase 7</a></p>
           <ul class="tasks">
-            <li class="task task--not-started" data-text="website/category summarization"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Website/category summarization</span></li>
-            <li class="task task--not-started" data-text="seed prompt generation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Seed prompt generation</span></li>
-            <li class="task task--not-started" data-text="prompt topic generation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt topic generation</span></li>
+            <li class="task task--partial" data-text="website/category summarization"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Website/category summarization<span class="task__note">Bounded homepage extraction and editable confirmed profile implemented in M1; deep multi-page/LLM business analysis is not implied.</span></span></li>
+            <li class="task task--done" data-text="seed prompt generation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Seed prompt generation<span class="task__note">Deterministic candidate templates from confirmed business profile. Verified in existing onboarding module tests and code; not new implementation in this update.</span></span></li>
+            <li class="task task--done" data-text="prompt topic generation"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt topic generation<span class="task__note">Candidate intent topics are assigned on acceptance. Verified in existing onboarding module tests and code; not new implementation in this update.</span></span></li>
             <li class="task task--not-started" data-text="seo/customer-question input support"><span class="task__marker" aria-hidden="true"></span><span class="task__title">SEO/customer-question input support</span></li>
-            <li class="task task--not-started" data-text="comparison prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Comparison prompts</span></li>
-            <li class="task task--not-started" data-text="alternative prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Alternative prompts</span></li>
-            <li class="task task--not-started" data-text="use-case prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Use-case prompts</span></li>
+            <li class="task task--done" data-text="comparison prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Comparison prompts<span class="task__note">Category comparison templates implemented. Verified in existing onboarding module tests and code; not new implementation in this update.</span></span></li>
+            <li class="task task--done" data-text="alternative prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Alternative prompts<span class="task__note">Alternative-seeking category template implemented. Verified in existing onboarding module tests and code; not new implementation in this update.</span></span></li>
+            <li class="task task--done" data-text="use-case prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Use-case prompts<span class="task__note">Audience/product use-case templates implemented. Verified in existing onboarding module tests and code; not new implementation in this update.</span></span></li>
             <li class="task task--not-started" data-text="educational prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Educational prompts</span></li>
             <li class="task task--not-started" data-text="branded prompts"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Branded prompts</span></li>
             <li class="task task--not-started" data-text="funnel-stage classification"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Funnel-stage classification</span></li>
             <li class="task task--not-started" data-text="semantic dedupe"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Semantic dedupe</span></li>
-            <li class="task task--not-started" data-text="relevance score"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Relevance score</span></li>
-            <li class="task task--not-started" data-text="accept"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Accept</span></li>
-            <li class="task task--not-started" data-text="reject"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Reject</span></li>
-            <li class="task task--not-started" data-text="rejection memory"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Rejection memory</span></li>
+            <li class="task task--done" data-text="relevance score"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Relevance score<span class="task__note">Explainable template relevance bands/scores implemented; no demand estimate. Verified in existing onboarding module tests and code; not new implementation in this update.</span></span></li>
+            <li class="task task--done" data-text="accept"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Accept<span class="task__note">Atomic acceptance with exact prompt dedupe implemented. Verified in existing onboarding module tests and code; not new implementation in this update.</span></span></li>
+            <li class="task task--done" data-text="reject"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Reject<span class="task__note">Rejection decision implemented. Verified in existing onboarding module tests and code; not new implementation in this update.</span></span></li>
+            <li class="task task--done" data-text="rejection memory"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Rejection memory<span class="task__note">Accepted/rejected decisions retained within the same profile/generation context. Verified in existing onboarding module tests and code; not new implementation in this update.</span></span></li>
             <li class="task task--not-started" data-text="fanout variants"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Fanout variants</span></li>
             <li class="task task--not-started" data-text="fanout clustering"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Fanout clustering</span></li>
             <li class="task task--not-started" data-text="prompt-value scoring"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Prompt-value scoring</span></li>
@@ -890,7 +890,7 @@ footer code { font-family: var(--font-mono); }
           <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>A new brand can receive a useful initial prompt library without manual research</li></ul></div>
         </div>
       </details>
-      <details class="phase" id="phase-9" data-track="readiness" data-status="in-progress" open>
+      <details class="phase" id="phase-9" data-track="readiness" data-status="partial" open>
         <summary class="phase__summary">
           <span class="phase__num">09</span>
           <span class="phase__main">
@@ -902,7 +902,7 @@ footer code { font-family: var(--font-mono); }
             </span>
           </span>
           <span class="phase__aside">
-            <span class="pill pill--in-progress">In progress</span>
+            <span class="pill pill--partial">In progress</span>
             <span class="bar" role="img" aria-label="24 of 29 tasks done">
               <span class="bar__done" style="width:82.76%"></span>
               <span class="bar__partial" style="width:6.90%"></span>
@@ -998,7 +998,7 @@ footer code { font-family: var(--font-mono); }
           <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>Different product types are not unfairly penalized for irrelevant capabilities</li></ul></div>
         </div>
       </details>
-      <details class="phase" id="phase-11" data-track="execution" data-status="in-progress" open>
+      <details class="phase" id="phase-11" data-track="execution" data-status="partial" open>
         <summary class="phase__summary">
           <span class="phase__num">11</span>
           <span class="phase__main">
@@ -1006,13 +1006,13 @@ footer code { font-family: var(--font-mono); }
             <span class="phase__meta">
               <span class="phase__track">Execution</span>
               <span>·</span>
-              <span>18/25 tasks</span>
+              <span>19/25 tasks</span>
             </span>
           </span>
           <span class="phase__aside">
-            <span class="pill pill--in-progress">In progress</span>
-            <span class="bar" role="img" aria-label="18 of 25 tasks done">
-              <span class="bar__done" style="width:72.00%"></span>
+            <span class="pill pill--partial">In progress</span>
+            <span class="bar" role="img" aria-label="19 of 25 tasks done">
+              <span class="bar__done" style="width:76.00%"></span>
               <span class="bar__partial" style="width:12.00%"></span>
             </span>
           </span>
@@ -1022,7 +1022,7 @@ footer code { font-family: var(--font-mono); }
           <p class="deps"><span class="deps__label">Depends on</span> <a href="#phase-8">Phase 8</a> <a href="#phase-10">Phase 10</a></p>
           <ul class="tasks">
             <li class="task task--done" data-text="recommendation entity upgrade"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Recommendation entity upgrade</span></li>
-            <li class="task task--not-started" data-text="visibility recommendations"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Visibility recommendations<span class="task__note">The GEO generator is not written; only readiness produces recommendations so far.</span></span></li>
+            <li class="task task--done" data-text="visibility recommendations"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Visibility recommendations<span class="task__note">geo-2 produces on-demand evidence-linked competitive/citation recommendations. Live recommendation verified September 11; broader content diagnosis remains later.</span></span></li>
             <li class="task task--done" data-text="off-page rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Off-page rules</span></li>
             <li class="task task--not-started" data-text="on-page rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">On-page rules</span></li>
             <li class="task task--not-started" data-text="technical geo rules"><span class="task__marker" aria-hidden="true"></span><span class="task__title">Technical GEO rules</span></li>
@@ -1050,7 +1050,7 @@ footer code { font-family: var(--font-mono); }
           <div class="exit"><p class="exit__label">Exit criteria</p><ul><li>Every recommendation explains what is wrong, why it matters, what evidence proves it, what to change, and how to verify the fix</li></ul></div>
         </div>
       </details>
-      <details class="phase" id="phase-12" data-track="readiness" data-status="in-progress" open>
+      <details class="phase" id="phase-12" data-track="readiness" data-status="partial" open>
         <summary class="phase__summary">
           <span class="phase__num">12</span>
           <span class="phase__main">
@@ -1062,7 +1062,7 @@ footer code { font-family: var(--font-mono); }
             </span>
           </span>
           <span class="phase__aside">
-            <span class="pill pill--in-progress">In progress</span>
+            <span class="pill pill--partial">In progress</span>
             <span class="bar" role="img" aria-label="21 of 26 tasks done">
               <span class="bar__done" style="width:80.77%"></span>
               <span class="bar__partial" style="width:11.54%"></span>
